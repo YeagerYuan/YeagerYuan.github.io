@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>关于unity中材质的导入</title>
+      <link href="/2023/04/16/%E5%85%B3%E4%BA%8Eunity%E4%B8%AD%E6%9D%90%E8%B4%A8%E7%9A%84%E5%AF%BC%E5%85%A5/"/>
+      <url>/2023/04/16/%E5%85%B3%E4%BA%8Eunity%E4%B8%AD%E6%9D%90%E8%B4%A8%E7%9A%84%E5%AF%BC%E5%85%A5/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>关于unity中材质的导入<br>在unity中搭建虚拟物体或者导入模型时，为了使模型看起来更加真实，我们通常需要在模型上添加材质（material），有关材质的具体参数涉及到光学等各种知识，在此不做过多介绍。本文档只就如何在网络上寻找材质并且成功导入unity当中进行简单说明。<br>1.材质的寻找<br>推荐以下两个网站：<br>1）<a href="https://quixel.com/megascans/home/%EF%BC%88%E9%9C%80%E8%A6%81VPN,%E4%B8%8A%E9%9D%A2%E4%B9%9F%E6%9C%89%E5%A4%A7%E9%87%8F%E7%9A%84%E6%A8%A1%E5%9E%8B%E6%96%87%E4%BB%B6%EF%BC%89">https://quixel.com/megascans/home/（需要VPN,上面也有大量的模型文件）</a><br><img src="/2023/04/16/%E5%85%B3%E4%BA%8Eunity%E4%B8%AD%E6%9D%90%E8%B4%A8%E7%9A%84%E5%AF%BC%E5%85%A5/%E5%9B%BE%E7%89%871.png"><br>2）<a href="https://ambientcg.com/">https://ambientcg.com/</a><br>要注意的是，有的材质在使用过程中是不支持商业活动的，在使用材质的过程中请务必关心此方面的内容。<br>2.材质的下载及导入<br>以第一个网站为例，选择你喜欢的材质，点击下载即可（有各种画质的材料可供选择，选择你觉得合适的即可）。注意在下载前你需要登录你的EPIC账号。下载得到的是一个压缩包，将其解压至文件夹内即可。打开文件夹，我们一般可以看到以下内容：<br><img src="/2023/04/16/%E5%85%B3%E4%BA%8Eunity%E4%B8%AD%E6%9D%90%E8%B4%A8%E7%9A%84%E5%AF%BC%E5%85%A5/%E5%9B%BE%E7%89%872.png"><br>我们只需关注以下几项内容：albedo（反射率）,roughness（粗糙度）,normal（法线贴图）,metalness（金属的）以及AO（遮挡）（图中未给出），其中有些材料可能不会带有metalness以及AO,该情况下无需考虑或调整该项参数，但是所有材料都会带有前三项属性的图片，他们可能是jpg格式的，也可能是png格式的。<br>3.材质的导入与创建<br>在项目中创建文件夹，右击选择创建（create）材质（material），得到一个材质球，然后我们在文件夹内导入上述的图片（上述五个只要有的都可以导入，其他的如displacement不需要导入），之后打开材质球，如下图所示，将shader改为Autodesk Interactive类型，之后将各个图片直接拖拽至对应的方框，即可生成相应的材质。<br><img src="/2023/04/16/%E5%85%B3%E4%BA%8Eunity%E4%B8%AD%E6%9D%90%E8%B4%A8%E7%9A%84%E5%AF%BC%E5%85%A5/%E5%9B%BE%E7%89%873.png"><br>4.材料的使用<br>可以直接选中想上材料的物体，将材料拖拽至上面，或者直接将材质拖拽至左侧层级中该物体所对应的位置即可将材质应用。注意的是最好关闭场景照明，以免由于光照原因使得材料看起来与预览时有较大出入。<br><img src="/2023/04/16/%E5%85%B3%E4%BA%8Eunity%E4%B8%AD%E6%9D%90%E8%B4%A8%E7%9A%84%E5%AF%BC%E5%85%A5/%E5%9B%BE%E7%89%874.png"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>01路上的见闻</title>
       <link href="/2023/04/16/01%E8%B7%AF%E4%B8%8A%E7%9A%84%E8%A7%81%E9%97%BB/"/>
       <url>/2023/04/16/01%E8%B7%AF%E4%B8%8A%E7%9A%84%E8%A7%81%E9%97%BB/</url>
