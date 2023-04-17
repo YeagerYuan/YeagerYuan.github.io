@@ -12,5 +12,8 @@
 
 #web_bg {
     /* 标准的语法 */
-    background: linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233));
+    background: -webkit-linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); /* 标准的语法（必须放在最后） */
   }
