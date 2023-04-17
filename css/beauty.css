@@ -60,7 +60,11 @@
     background-color: rgba(0, 0, 0, 0);
 }
 
-
+/* 文章页背景 */
+.layout_post>#post {
+    /* 以下代表白色透明度为0.3 */
+    background: rgba(109, 230, 230, 0.3);
+}
 
 /* 所有背景（包括首页卡片、文章页、页面页等） */
 #aside_content .card-widget, #recent-posts>.recent-post-item, .layout_page>div:first-child:not(.recent-posts), .layout_post>#page, .layout_post>#post, .read-mode .layout_post>#post{
@@ -68,13 +72,3 @@
     background: rgba(235, 202, 172, 0.3);
 }
 
-#web_bg {
-    /* webkit内核 5.1 - 6.0 */
-    background: -webkit-linear-gradient(left, red, blue);
-    /* Opera 11.1 - 12.0 */
-    background: -o-linear-gradient(right, red, blue);
-    /* Firefox 3.6 - 15 */
-    background: -moz-linear-gradient(right, red, blue);
-    /* 标准的语法 */
-    background: linear-gradient(to right, red, blue);
-  }
