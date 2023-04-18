@@ -141,7 +141,7 @@
       <link href="/2023/04/16/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%B5%8B%E8%AF%95/"/>
       <url>/2023/04/16/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%B5%8B%E8%AF%95/</url>
       
-        <content type="html"><![CDATA[<p>此篇用来测试post_asset_folder功能，用来更好的存储并且分类每一篇文章所引用的资源<br><img src="/2023/04/16/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%B5%8B%E8%AF%95/001.JPG"><br><img src="/2023/04/16/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%B5%8B%E8%AF%95/002.JPG"><br><img src="/2023/04/16/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%B5%8B%E8%AF%95/003.JPG"><br><img src="/2023/04/16/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%B5%8B%E8%AF%95/004.JPG"></p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>此篇用来测试post_asset_folder功能，用来更好的存储并且分类每一篇文章所引用的资源<br><img src="/2023/04/16/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%B5%8B%E8%AF%95/001.JPG"><br><img src="/2023/04/16/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%B5%8B%E8%AF%95/002.JPG"><br><img src="/2023/04/16/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%B5%8B%E8%AF%95/003.JPG"><br><img src="/2023/04/16/%E6%96%87%E4%BB%B6%E5%A4%B9%E6%B5%8B%E8%AF%95/004.JPG"></p>]]></content>
       
       
       
