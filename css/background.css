@@ -21,8 +21,8 @@
 
   #web_bg {
     /* 标准的语法 */
-    background: -webkit-linear-gradient(to right, rgb(2, 2, 2), rgb(240, 165, 4)); /* Safari 5.1 - 6.0 */
-    background: -o-linear-gradient(to right,  rgb(2, 2, 2), rgb(240, 165, 4)); /* Opera 11.1 - 12.0 */
-    background: -moz-linear-gradient(to right, rgb(2, 2, 2), rgb(240, 165, 4)); /* Firefox 3.6 - 15 */
-    background: linear-gradient(to right,  rgb(2, 2, 2), rgb(240, 165, 4)); /* 标准的语法（必须放在最后） */
+    background: -webkit-linear-gradient(to right, rgb(228, 130, 2), rgb(204, 183, 138)); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(to right,  rgb(228, 130, 2), rgb(204, 183, 138)); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(to right, rgb(228, 130, 2), rgb(204, 183, 138)); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right,  rgb(228, 130, 2), rgb(204, 183, 138)); /* 标准的语法（必须放在最后） */
   }
