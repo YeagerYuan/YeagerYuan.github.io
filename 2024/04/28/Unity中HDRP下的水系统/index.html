@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Unity中HDRP下的水系统 | YEAGER在海的那边的小木屋</title><meta name="author" content="YeagerYuan"><meta name="copyright" content="YeagerYuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="unity最新版本中提供了高清渲染管线中的全新水系统，可以在unity场景中创建一片逼真的水体。下面我们来介绍一下详细的创建步骤。 安装最新的UnityHDRP水系统的部分功能在2022LTS版本中也可以使用，但是为了体验到全部功能，建议还是安装最新的2023.2版本。我这里使用的是Unity最新发布的2023.2.19f1c1版本。 创建项目以及渲染设置 我们选择High Definition">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity中HDRP下的水系统">
+<meta property="og:url" content="http://yeageryuan.cc/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="YEAGER在海的那边的小木屋">
+<meta property="og:description" content="unity最新版本中提供了高清渲染管线中的全新水系统，可以在unity场景中创建一片逼真的水体。下面我们来介绍一下详细的创建步骤。 安装最新的UnityHDRP水系统的部分功能在2022LTS版本中也可以使用，但是为了体验到全部功能，建议还是安装最新的2023.2版本。我这里使用的是Unity最新发布的2023.2.19f1c1版本。 创建项目以及渲染设置 我们选择High Definition">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yeageryuan.cc/img/avatar.jpg">
+<meta property="article:published_time" content="2024-04-28T03:36:52.000Z">
+<meta property="article:modified_time" content="2024-04-28T07:51:46.419Z">
+<meta property="article:author" content="YeagerYuan">
+<meta property="article:tag" content="unity">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yeageryuan.cc/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yeageryuan.cc/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Unity中HDRP下的水系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-28 15:51:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/beauty.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa fa-commenting"></i><span> 研记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 灵感</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 好图</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 柔耳</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 醒目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 安利</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 悄悄话</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/violet.png')"><nav id="nav"><span id="blog-info"><a href="/" title="YEAGER在海的那边的小木屋"><span class="site-name">YEAGER在海的那边的小木屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa fa-commenting"></i><span> 研记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 灵感</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 好图</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 柔耳</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 醒目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 安利</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 悄悄话</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Unity中HDRP下的水系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-28T03:36:52.000Z" title="发表于 2024-04-28 11:36:52">2024-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-28T07:51:46.419Z" title="更新于 2024-04-28 15:51:46">2024-04-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Unity中HDRP下的水系统"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>unity最新版本中提供了高清渲染管线中的全新水系统，可以在unity场景中创建一片逼真的水体。下面我们来介绍一下详细的创建步骤。</p>
+<h2 id="安装最新的Unity"><a href="#安装最新的Unity" class="headerlink" title="安装最新的Unity"></a>安装最新的Unity</h2><p>HDRP水系统的部分功能在2022LTS版本中也可以使用，但是为了体验到全部功能，建议还是安装最新的2023.2版本。我这里使用的是Unity最新发布的2023.2.19f1c1版本。</p>
+<h2 id="创建项目以及渲染设置"><a href="#创建项目以及渲染设置" class="headerlink" title="创建项目以及渲染设置"></a>创建项目以及渲染设置</h2><p><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/1.png"></p>
+<p>我们选择High Definition 3D模板，这个模板下使用的是HDRP管线。</p>
+<p><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/2.png"></p>
+<p><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/3.png"></p>
+<p>找到project settings，在Quality中找到HDRP，然后我们进入Rendering,勾选上Water的Enable，为了演示效果，我们把所有的选项都勾选上。（在此之前会弹窗HDRP Wizard,可以点击Embed Configuration Editable Package）。</p>
+<img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/4.png" style="zoom:67%;">
+
+
+
+<img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/5.png" style="zoom:67%;">
+
+<p>找到场景中的Sky and Fog Volume。 在Unity中，使用HDRP时，“Sky and Fog Volume”是用于控制天空、雾和大气效果的组件。这个组件允许你详细地配置和自定义游戏或可视化项目中的天空盒和大气效果，使之更加逼真和符合场景的需求。 然后我们添加WaterRendering组件（点击add override)，打开state并且激活。</p>
+<h2 id="添加水"><a href="#添加水" class="headerlink" title="添加水"></a>添加水</h2><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/6.png" style="zoom:67%;">
+
+<p>在GameObject里面找到Water,surface里面有三种水，它们的区别如下：</p>
+<table>
+<thead>
+<tr>
+<th>种类</th>
+<th>Ocean Sea or Lake</th>
+<th>Pool</th>
+<th>River</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>图片</td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/7.png" style="zoom:67%;"></td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/8.png" style="zoom:67%;"></td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/9.png" style="zoom:67%;"></td>
+</tr>
+</tbody></table>
+<p>它们的区别在于波浪的复杂性和预期用途。当创建了一种后，后面还可以在组件WaterSurface中进行更改。</p>
+<h2 id="WaterSurface讲解"><a href="#WaterSurface讲解" class="headerlink" title="WaterSurface讲解"></a>WaterSurface讲解</h2><h3 id="Ocean"><a href="#Ocean" class="headerlink" title="Ocean"></a>Ocean</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">— General: 定义水体的整体类型（如海洋/海洋/湖、河流、水池）和用于渲染水面的几何形状（如四面、定制、四周、无限）</span><br><span class="line">— Simulation: 控制波纹和涟漪如何影响水面的形成</span><br><span class="line">— Deformation: 影响局部变形如何升高或降低水的一部分，用于瀑布或其他高度变化</span><br><span class="line">— Appearance: 确定水的颜色、平滑度、折射和光散射；焦散和特殊的水下设置增强基于物理的阴影</span><br><span class="line">— Foam: 控制波顶、水中物体周围或沿海岸线的泡沫外观和行为</span><br><span class="line">— Miscellaneous: 控制渲染层掩模和调试模式</span><br></pre></td></tr></table></figure>
+
+<h4 id="Simulation"><a href="#Simulation" class="headerlink" title="Simulation"></a>Simulation</h4><p>Ocean中的simulation用于控制水平面的波纹，它分为Swell( 涌浪，用于模拟大尺度的水体动态，如海洋或大湖波动，常用于增加场景的自然感和动态感 )和Ripples（涟漪， 常用于模拟细微的水面扰动，增加环境的细节和活力，例如模拟雨后水面的波纹或鱼儿游动引起的水动 ）。</p>
+<p>可以把FirstBand理解为粗调，SecondBand理解为微调，Ripples为细节。</p>
+<table>
+<thead>
+<tr>
+<th>介绍</th>
+<th>设置</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全部开启</td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/11.png" style="zoom:67%;"></td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/12.png" style="zoom:67%;"></td>
+</tr>
+<tr>
+<td>关闭涟漪</td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/13.png" style="zoom:67%;"></td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/14.png" style="zoom:67%;"></td>
+</tr>
+<tr>
+<td>全部关闭</td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/15.png" style="zoom:67%;"></td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/16.png" style="zoom:67%;"></td>
+</tr>
+</tbody></table>
+<h3 id="River"><a href="#River" class="headerlink" title="River"></a>River</h3><p>river使用agitation(搅动)控制较低频段，这相当于Ocean的SecondBand。Ripples和Ocean的类似。</p>
+<img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/17.png" style="zoom:67%;">
+
+<img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/18.png">
+
+<h3 id="Pools"><a href="#Pools" class="headerlink" title="Pools"></a>Pools</h3><p>pools只使用Ripples,它最大的特点是可以自定义形状，这是通过设置Geometry Type为custom,然后选择自己准备好的mesh renderer，就可以让水体以自己希望的方式呈现。</p>
+<img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/19.png">
+
+<img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/20.png">
+
+<img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/8.png">
+
+<h2 id="导入官方示例"><a href="#导入官方示例" class="headerlink" title="导入官方示例"></a>导入官方示例</h2><p>unity官方提供了四种水的实例场景，这在HDRP的资源包中可以找到。</p>
+<img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/21.png">
+
+<table>
+<thead>
+<tr>
+<th><strong>Swimming Pool</strong></th>
+<th>这个场景显示了在不同高度的水池的多个水面。它还演示了使用自定义网格来实现除基本矩形之外的唯一池形状。</th>
+<th><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/22.png"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Island</strong></td>
+<td><strong>这个场景的特点是一个被海浪包围的小陆地。水面具可以清除岛上周围的膨胀，而变形者会产生海浪。贴花和泡沫发生器为破波增加了泡沫。使用脚本API，物理模拟的海鸥漂浮在水面上。</strong></td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/23.png"></td>
+</tr>
+<tr>
+<td><strong>Glacier</strong></td>
+<td><strong>这个场景包括河流，瀑布变形器，用于制造水流的电流模拟，移动的冰山后面的泡沫，为喷雾效果的贴花，和投影的焦散。</strong></td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/24.png"></td>
+</tr>
+<tr>
+<td><strong>Water Line</strong></td>
+<td><strong>这个场景使用自定义通道修改水面的水平和水下渲染，产生更大的模糊水线，并在相机镜头上模拟水。</strong></td>
+<td><img src="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/25.png"></td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yeageryuan.cc">YeagerYuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yeageryuan.cc/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/">http://yeageryuan.cc/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yeageryuan.cc" target="_blank">YEAGER在海的那边的小木屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/unity/">unity</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/28/UnityVR%E6%89%8B%E9%83%A8%E5%8A%A8%E7%94%BB/" title="UnityVR手部动画"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">UnityVR手部动画</div></div></a></div><div class="next-post pull-right"><a href="/2024/04/16/%E6%8E%8C%E9%98%85ireader4-pro%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E8%BD%AF%E4%BB%B6%EF%BC%88%E6%97%A0%E9%9C%80%E5%88%B7%E6%9C%BA%EF%BC%89/" title="掌阅iReader4 pro如何安装第三方软件（无需刷机）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">掌阅iReader4 pro如何安装第三方软件（无需刷机）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/04/28/UnityVR%E6%89%8B%E9%83%A8%E5%8A%A8%E7%94%BB/" title="UnityVR手部动画"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-28</div><div class="title">UnityVR手部动画</div></div></a></div><div><a href="/2023/12/03/Unity%E4%B8%AD%E7%9A%84%E5%9B%9B%E5%85%83%E6%95%B0/" title="Unity中的四元数"><img class="cover" src="/pictures/siyuanshu.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">Unity中的四元数</div></div></a></div><div><a href="/2023/11/04/Unity%E4%B8%AD%E7%9A%84Mathf-Lerp%E5%AE%9E%E7%8E%B0%E5%85%88%E5%BF%AB%E5%90%8E%E6%85%A2%E6%8E%A5%E8%BF%91%E4%B8%8E%E5%8C%80%E9%80%9F%E6%8E%A5%E8%BF%91/" title="Unity中的Mathf.Lerp实现先快后慢接近与匀速接近"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-04</div><div class="title">Unity中的Mathf.Lerp实现先快后慢接近与匀速接近</div></div></a></div><div><a href="/2023/04/16/%E5%85%B3%E4%BA%8Eunity%E4%B8%AD%E6%9D%90%E8%B4%A8%E7%9A%84%E5%AF%BC%E5%85%A5/" title="关于unity中材质的导入"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-16</div><div class="title">关于unity中材质的导入</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-calendar"><div class="card-content"><div class="item-headline"><i class="far fa-calendar-alt" aria-hidden="true"></i><span>考研倒计时</span></div><div class="widget-wrap"></div><div class="widget" id="calendar"></div></div></div><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">YeagerYuan</div><div class="author-info__description">要进来听听世界上最不自由的人讲述最自由的故事吗？</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">24</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/YeagerYuan"><i class="fab fa-github"></i><span>再多按一次就会爆炸</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎在评论区评论！记得挂好梯子，随便输个邮箱开匿名评论就行~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%9A%84Unity"><span class="toc-number">1.</span> <span class="toc-text">安装最新的Unity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E4%BB%A5%E5%8F%8A%E6%B8%B2%E6%9F%93%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">创建项目以及渲染设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%B0%B4"><span class="toc-number">3.</span> <span class="toc-text">添加水</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WaterSurface%E8%AE%B2%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">WaterSurface讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ocean"><span class="toc-number">4.1.</span> <span class="toc-text">Ocean</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Simulation"><span class="toc-number">4.1.1.</span> <span class="toc-text">Simulation</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#River"><span class="toc-number">4.2.</span> <span class="toc-text">River</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pools"><span class="toc-number">4.3.</span> <span class="toc-text">Pools</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%AE%98%E6%96%B9%E7%A4%BA%E4%BE%8B"><span class="toc-number">5.</span> <span class="toc-text">导入官方示例</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/09/17/%E8%A2%AB%E8%AF%85%E5%92%92%E7%9A%84%E5%8B%87%E8%80%85%E7%9A%84%E5%90%8E%E6%97%A5%E8%B0%88-%E5%BA%8F%E5%B9%95/" title="被诅咒的勇者的后日谈~序幕"><img src="/pictures/yongzhe1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="被诅咒的勇者的后日谈~序幕"/></a><div class="content"><a class="title" href="/2024/09/17/%E8%A2%AB%E8%AF%85%E5%92%92%E7%9A%84%E5%8B%87%E8%80%85%E7%9A%84%E5%90%8E%E6%97%A5%E8%B0%88-%E5%BA%8F%E5%B9%95/" title="被诅咒的勇者的后日谈~序幕">被诅咒的勇者的后日谈~序幕</a><time datetime="2024-09-16T16:44:17.000Z" title="发表于 2024-09-17 00:44:17">2024-09-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/05/07/%E3%80%8A%E9%A5%BF%E6%AE%8D%EF%BC%9A%E6%98%8E%E6%9C%AB%E5%8D%83%E9%87%8C%E8%A1%8C%E3%80%8B%EF%BC%8C%E4%B8%80%E9%83%A8%E5%9B%BD%E4%BA%A7%E9%A1%B6%E5%B0%96%E6%B0%B4%E5%87%86%E7%9A%84%E6%96%87%E5%AD%97%E5%86%92%E9%99%A9/" title="《饿殍：明末千里行》，一部国产顶尖水准的文字冒险"><img src="/pictures/mingmo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="《饿殍：明末千里行》，一部国产顶尖水准的文字冒险"/></a><div class="content"><a class="title" href="/2024/05/07/%E3%80%8A%E9%A5%BF%E6%AE%8D%EF%BC%9A%E6%98%8E%E6%9C%AB%E5%8D%83%E9%87%8C%E8%A1%8C%E3%80%8B%EF%BC%8C%E4%B8%80%E9%83%A8%E5%9B%BD%E4%BA%A7%E9%A1%B6%E5%B0%96%E6%B0%B4%E5%87%86%E7%9A%84%E6%96%87%E5%AD%97%E5%86%92%E9%99%A9/" title="《饿殍：明末千里行》，一部国产顶尖水准的文字冒险">《饿殍：明末千里行》，一部国产顶尖水准的文字冒险</a><time datetime="2024-05-07T08:58:02.000Z" title="发表于 2024-05-07 16:58:02">2024-05-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/05/%E6%B5%85%E8%B0%88%E3%80%8A%E6%98%8E%E6%9C%AB%E3%80%8B/" title="浅谈《明末》">浅谈《明末》</a><time datetime="2024-05-05T08:43:17.000Z" title="发表于 2024-05-05 16:43:17">2024-05-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/28/UnityVR%E6%89%8B%E9%83%A8%E5%8A%A8%E7%94%BB/" title="UnityVR手部动画">UnityVR手部动画</a><time datetime="2024-04-28T12:58:47.000Z" title="发表于 2024-04-28 20:58:47">2024-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/" title="Unity中HDRP下的水系统">Unity中HDRP下的水系统</a><time datetime="2024-04-28T03:36:52.000Z" title="发表于 2024-04-28 11:36:52">2024-04-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By YeagerYuan</div><div class="footer_custom_text">有空就来看看吧，我的朋友</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://yeageryuan.cc/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/'
+    this.page.identifier = '/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/'
+    this.page.title = 'Unity中HDRP下的水系统'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://yeageryuan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="你也在,寻找,所谓的,自由吗" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
