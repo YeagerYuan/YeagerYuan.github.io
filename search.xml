@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Csharp学习笔记-2</title>
+      <link href="/2025/01/18/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/"/>
+      <url>/2025/01/18/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="C-基本语法"><a href="#C-基本语法" class="headerlink" title="C# 基本语法"></a>C# 基本语法</h1><p>学过C语言的同学对于C#的语法应该是比较熟悉的了。下面就以菜鸟教程中的一段代码作为示例。</p><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;<span class="comment">//命名空间指令，告诉编译器在代码中希望使用System命名空间中的类、接口、枚举和其他类型</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">RectangleApplication</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Rectangle</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 成员变量</span></span><br><span class="line">        <span class="built_in">double</span> length;<span class="comment">//一个double类型的变量，名为length，下同</span></span><br><span class="line">        <span class="built_in">double</span> width;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Acceptdetails</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            length = <span class="number">5.5</span>;    </span><br><span class="line">            width = <span class="number">3.5</span>;</span><br><span class="line">        &#125;<span class="comment">//调用该方法，给变量赋值（C#中严格意义上只有方法Method，没有函数）</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="built_in">double</span> <span class="title">GetArea</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> length * width;</span><br><span class="line">        &#125;<span class="comment">//有返回值的方法</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Display</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;Length: &#123;0&#125;&quot;</span>, length);</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;Width: &#123;0&#125;&quot;</span>, width);</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;Area: &#123;0&#125;&quot;</span>, GetArea());</span><br><span class="line">        &#125;<span class="comment">//调用该方法，打印数据</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">ExecuteRectangle</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Rectangle r = <span class="keyword">new</span> Rectangle();<span class="comment">//创建Rectangle类的对象r</span></span><br><span class="line">            r.Acceptdetails();</span><br><span class="line">            r.Display();</span><br><span class="line">            Console.ReadLine();<span class="comment">//等待用户输入，防止程序运行后窗口立即关闭</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="comment">//定义一个ExecuteRectangle类，其中包含了一个Main的方法，该方法在外部调用，可以创建一个矩形</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> CSharp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Csharp学习笔记-1</title>
       <link href="/2025/01/17/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/"/>
       <url>/2025/01/17/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/</url>
