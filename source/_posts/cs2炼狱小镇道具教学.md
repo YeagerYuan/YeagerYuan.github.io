@@ -3,6 +3,7 @@ title: cs2炼狱小镇道具教学
 date: 2025-01-22 16:46:44
 tags: CS
 categories: 游戏攻略
+cover: cs2炼狱小镇道具教学/01.png
 ---
 
 # 匪

@@ -56,10 +56,10 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: /img/fulilian.jpg
+index_img: /img/sakiko.png
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: /img/fulilian.jpg
+default_top_img: /img/sakiko.png
 
 # The banner image of archive page
 archive_img: /img/archive.JPG
