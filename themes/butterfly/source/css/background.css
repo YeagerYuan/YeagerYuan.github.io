@@ -1,0 +1,39 @@
+/* 文章页背景 */
+.layout_post>#post {
+  /* 以下代表白色透明度为0.3 */
+  background: rgba(92, 170, 170, 0.3);
+}
+
+/* 所有背景（包括首页卡片、文章页、页面页等） */
+#aside_content .card-widget, #recent-posts>.recent-post-item, .layout_page>div:first-child:not(.recent-posts), .layout_post>#page, .layout_post>#post, .read-mode .layout_post>#post{
+  /* 以下代表白色透明度为0.3 */
+  background: rgba(231, 192, 154, 0.3);
+}
+
+/*
+#web_bg {
+    background: -webkit-linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); 
+    background: -o-linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); 
+    background: -moz-linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); 
+    background: linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); 
+  }
+*/
+
+/*lastshojo
+  #web_bg {
+    background: -webkit-linear-gradient(to right, rgb(228, 130, 2), rgb(204, 183, 138)); 
+    background: -o-linear-gradient(to right,  rgb(228, 130, 2), rgb(204, 183, 138)); 
+    background: -moz-linear-gradient(to right, rgb(228, 130, 2), rgb(204, 183, 138)); 
+    background: linear-gradient(to right,  rgb(228, 130, 2), rgb(204, 183, 138));
+  }
+  */
+
+  /*violet*/
+  #web_bg {
+    background: -webkit-linear-gradient(to right, rgb(49, 222, 170), rgb(222, 249, 240)); 
+    background: -o-linear-gradient(to right, rgb(49, 222, 170), rgb(222, 249, 240)); 
+    background: -moz-linear-gradient(to right, rgb(49, 222, 170), rgb(222, 249, 240)); 
+    background: linear-gradient(to right, rgb(49, 222, 170), rgb(222, 249, 240));
+  }
+
+  

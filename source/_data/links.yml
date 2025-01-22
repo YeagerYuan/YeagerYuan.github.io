@@ -1,0 +1,13 @@
+class:
+  class_name: 友情链接
+  link_list:
+    1:
+      name: MuteFun
+      link: https://www.2kdm.com/
+      avatar: /pictures/mutefun.png
+    2:
+      name: 风车动漫
+      link: https://www.dm530p.net/
+      avatar: /pictures/fengche.png
+
+
