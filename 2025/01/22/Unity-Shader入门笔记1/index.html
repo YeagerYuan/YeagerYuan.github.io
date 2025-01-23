@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Unity Shader入门笔记1 | YEAGER在海的那边的小木屋</title><meta name="author" content="YeagerYuan"><meta name="copyright" content="YeagerYuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Unity中的渲染管线和图形学中的渲染管线基本上指的是相同的概念，但是具体实现和细节方面可能存在一些差异。        Unity的渲染管线建立在图形学的基础上，但是它具有自己的实现和拓展提供了一个高度可配置和可拓展的框架，允许开发者根据需求自定义渲染流程，之后讲解的渲染管线相关知识主要针对Unity中的实现。 什么是渲染管线?渲染管线(渲染流水线)，它是计算机图形学中用于将三维场景转换为最终屏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity Shader入门笔记1">
+<meta property="og:url" content="http://yeageryuan.cc/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/index.html">
+<meta property="og:site_name" content="YEAGER在海的那边的小木屋">
+<meta property="og:description" content="Unity中的渲染管线和图形学中的渲染管线基本上指的是相同的概念，但是具体实现和细节方面可能存在一些差异。        Unity的渲染管线建立在图形学的基础上，但是它具有自己的实现和拓展提供了一个高度可配置和可拓展的框架，允许开发者根据需求自定义渲染流程，之后讲解的渲染管线相关知识主要针对Unity中的实现。 什么是渲染管线?渲染管线(渲染流水线)，它是计算机图形学中用于将三维场景转换为最终屏">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yeageryuan.cc/pictures/mita0.png">
+<meta property="article:published_time" content="2025-01-22T13:04:01.000Z">
+<meta property="article:modified_time" content="2025-01-23T03:28:22.308Z">
+<meta property="article:author" content="YeagerYuan">
+<meta property="article:tag" content="unity">
+<meta property="article:tag" content="shader">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yeageryuan.cc/pictures/mita0.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yeageryuan.cc/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Unity Shader入门笔记1',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-23 11:28:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/beauty.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">72</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa fa-commenting"></i><span> 研记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 灵感</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 好图</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 柔耳</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 醒目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 安利</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 悄悄话</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/pictures/mita0.png')"><nav id="nav"><span id="blog-info"><a href="/" title="YEAGER在海的那边的小木屋"><span class="site-name">YEAGER在海的那边的小木屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa fa-commenting"></i><span> 研记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 灵感</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 好图</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 柔耳</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 醒目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 安利</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 悄悄话</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Unity Shader入门笔记1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-22T13:04:01.000Z" title="发表于 2025-01-22 21:04:01">2025-01-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-23T03:28:22.308Z" title="更新于 2025-01-23 11:28:22">2025-01-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Unity Shader入门笔记1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Unity中的<strong>渲染管线</strong>和图形学中的渲染管线基本上指的是相同的概念，但是具体实现和细节方面可能存在一些差异。<br>        Unity的渲染管线建立在图形学的基础上，但是它具有自己的实现和拓展提供了一个高度可配置和可拓展的框架，允许开发者根据需求自定义渲染流程，<br>之后讲解的渲染管线相关知识主要针对Unity中的实现。</p>
+<h3 id="什么是渲染管线"><a href="#什么是渲染管线" class="headerlink" title="什么是渲染管线?"></a>什么是渲染管线?</h3><p>渲染管线(渲染流水线)，它是计算机图形学中用于将<strong>三维场景</strong>转换为<strong>最终屏幕所见图像</strong>的过程。它是由一系列的阶段和操作组成的，每个阶段都负责执行特定的任务逐步处理输入的集合数据和纹理信息最终生成可视化图像的过程。<br>渲染管线(流水线)就是将数据分阶段的变为屏幕图像的过程</p>
+<h3 id="渲染管线中的数据指的是什么"><a href="#渲染管线中的数据指的是什么" class="headerlink" title="渲染管线中的数据指的是什么?"></a>渲染管线中的数据指的是什么?</h3><p>渲染管线(流水线)的概念是:将数据分阶段的变为屏幕图像的过程这里的数据指的是:<br>        1.**顶点数据:**模型的顶点坐标、法线向量、纹理坐标等等。<br>        2.**纹理数据:**纹理贴图等。<br>        3.**光照数据:**光照参数、光源信息等等等 Unity场景上相关的数据。</p>
+<h3 id="渲染管线中的分阶段指的是什么"><a href="#渲染管线中的分阶段指的是什么" class="headerlink" title="渲染管线中的分阶段指的是什么?"></a>渲染管线中的分阶段指的是什么?</h3><p>渲染管线(流水线)的概念是:将数据分阶段的变为屏幕图像的过程。</p>
+<p>这里的分阶段指的是:渲染管线分为3个阶段：</p>
+<p><strong>应用阶段–&gt;几何阶段–&gt;光栅化阶段</strong></p>
+<p><img src="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/01.png"></p>
+<p>在每一个阶段都会对数据进行处理，<strong>最终目的</strong>就是在屏幕上让我们看见最终的图像。</p>
+<h2 id="应用阶段"><a href="#应用阶段" class="headerlink" title="应用阶段"></a>应用阶段</h2><p>这个阶段是由我们的应用主导的，因此通常由CPU负责实现。换句话说，我们这些开发者具有这个阶段的绝对控制权。 </p>
+<p>在这一阶段中，开发者有3个主要任务：首先，我们需要准备好场景数据，例如摄像机的位置、视锥体、场景中包含了哪些模型、使用了哪些光源等等；其次，为了提高渲染性能，我们往往需要做一个粗粒度剔除(culling)工作，以把那些不可见的物体剔除出去，这样就不需要再移交给几何阶段进行处理；最后，我们需要设置好每个模型的渲染状态。这些渲染状态包括但不限于它使用的材质(漫反射颜色、高光反射颜色)、使用的纹理、使用的 Shader 等。这一阶段最重要的输出是渲染所需的几何信息，即渲染图元(rendering primitives)。通俗来讲，渲染图元将会被传递给下一个阶段——几何阶段。</p>
+<p>应用阶段大致可分为下面3个阶段： </p>
+<p>(1)把数据加载到显存中。 </p>
+<p>(2)设置渲染状态。 </p>
+<p>(3)调用Draw Call。</p>
+<p>要注意的是，Draw Call过多时，性能瓶颈是由CPU造成的，我们可以用批处理技术来优化。</p>
+<p><img src="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/1737554735963.png" alt="1737554735963"></p>
+<h2 id="几何阶段"><a href="#几何阶段" class="headerlink" title="几何阶段"></a>几何阶段</h2><p>在渲染管线中，图元是指几何数据的基本单元它是构成几何体的最小可绘制的单元图元可以是点、线、三角形，在渲染管线的几何阶段，顶点数据会被组合为图元这些图元将在后续的光栅化阶段转换为像素，最终呈现在屏幕上。</p>
+<p>几何阶段用于处理所有和我们要绘制的几何相关的事情。例如，决定需要绘制的图元是什么,，样绘制它们，在哪里绘制它们。这一阶段通常在GPU上进行。所有渲染所需的数据都需要从硬盘(Hard Disk Drive,HDD)中加载到系统内存(Random Access Memory,RAM)中。然后，网格和纹理等数据又被加载到显卡上的存储空间——显存(Video Random Access Memory, VRAM)中。这是因为，显卡对于显存的访问速度更快，而且大多数显卡对于RAM没有直接的访问权利(苹果除外， 在苹果的统一内存架构中，CPU 和 GPU 使用相同的内存池 )。</p>
+<p>在渲染管线(流水线)的几何阶段<strong>最主要做的工作就是对顶点进行处理</strong>，并<strong>进行坐标转换裁剪画面外的图元</strong>。最主要完成的就是将模型的顶点从其<strong>本地坐标</strong>转换到最终的<strong>屏幕坐标</strong>中。对于我们来说，我们只要在顶点着色器中进行一些操作就可以带来不同的表现效果的体现，比如:水波纹、布料等等。</p>
+<h3 id="顶点着色器"><a href="#顶点着色器" class="headerlink" title="顶点着色器:"></a>顶点着色器:</h3><p>它处理来自应用阶段由CPU传递过来的顶点相关数据，输入进来的每一个顶点都会调用一次顶点着色器中的逻辑顶点着色器需要完成的工作主要有:<br>        <strong>1.坐标变换</strong> – 顶点变换、法线变换、纹理坐标变换等</p>
+<p><img src="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/1737594916675.png" alt="1737594916675"></p>
+<p><strong>2.顶点属性处理</strong>– 对顶点的其他属性进行处理，比如顶点颜色、透明度、切线向最等，可以用于实现顶点动画、着色、光照等效果</p>
+<p><strong>3.顶点插值</strong> – 计算顶点属性的插值</p>
+<p>对于我们来说顶点着色器是<strong>完全可编程</strong>的。	</p>
+<h3 id="裁剪："><a href="#裁剪：" class="headerlink" title="裁剪："></a>裁剪：</h3><p>由于我们的场景可能会很大，而摄像机的视野范围很有可能不会覆盖所有的场景物体，一个很自然的想法就是，那些不在摄像机视野范围的物体不需要被处理。而裁剪(Clipping)就是为了完成这个目的而被提出来的。我们可以进行一些配置，但一般情况下不需要进行任何处理，渲染管线会帮我们进行处理。</p>
+<p><img src="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/1737595173323.png" alt="1737595173323"></p>
+<h3 id="屏幕映射-："><a href="#屏幕映射-：" class="headerlink" title="屏幕映射 ："></a>屏幕映射 ：</h3><p>这一步输入的坐标仍然是三维坐标系下的坐标(范围在单位立方体内)。屏幕映射(Sereen Mapping)的任务是把每个图元的x和y坐标转换到屏幕坐标系(Sereen Coordinates)下。屏幕坐标系是一个二维坐标系，它和我们用于显示画面的分辨率有很大关系。</p>
+<p><img src="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/1737595297869.png" alt="1737595297869"></p>
+<p>有一个需要引起注意的地方是，屏幕坐标系在OpenGL和DirectX 之间的差异问题。OpenGL把屏幕的左下角当成最小的窗口坐标值，而DirectX则定义了屏幕的左上角为最小的窗口坐标值。 下图显示了这样的差异。</p>
+<p><img src="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/1737595395988.png" alt="1737595395988"></p>
+<h2 id="光栅化阶段"><a href="#光栅化阶段" class="headerlink" title="光栅化阶段"></a>光栅化阶段</h2><p>**片元:**在渲染管线中，片元是指在光栅化阶段生成的像素或像素片段。片元是渲染管线中进行像素级别操作和计算的基本单位每个片元代表了屏幕上的一个像素，并且具有位置信息和与之相关的属性，比如:<strong>颜色、深度值、法线</strong>等等。</p>
+<p>光栅化阶段有两个最重 要的目标：计算每个图元覆盖了哪些像素，以及为这些像素计算它们的颜色。</p>
+<p>光栅化阶段有四个小阶段：三角形设置，三角形便利，片元着色器和逐片元操作。</p>
+<p><img src="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/1737597839597.png" alt="1737597839597"></p>
+<h3 id="三角形设置："><a href="#三角形设置：" class="headerlink" title="三角形设置："></a>三角形设置：</h3><p>光栅化的第一个流水线阶段是<strong>三角形设置(Triangle Setup)<strong>。这个阶段会计算光栅化一个三角网格所需的信息。具体来说，上一个阶段输出的都是三角网格的顶点，即我们得到的是三角网格每条边的两个端点。但如果要得到</strong>整个三角网格对像素的覆盖情况</strong>，我们就必须计算<strong>每条边上的像素坐标</strong>。为了能够计算边界像素的坐标信息，我们就需要得到<strong>三角形边界的表示方式</strong>。这样一个<strong>计算三角网格表示数据</strong>的过程就叫做三角形设置。它的输出是为了给下一个阶段做准备。</p>
+<h3 id="三角形遍历-："><a href="#三角形遍历-：" class="headerlink" title="三角形遍历 ："></a>三角形遍历 ：</h3><p>三角形遍历(Triangle Traversal)阶段将会检查每个像素<strong>是否被一个三角网格所覆盖</strong>。如果被覆盖的话，就会生成一个**片元(fragment)**。而这样一个找到哪些像素被三角网格覆盖的过程就是三角形遍历，这个阶段也被称为扫描变换(Scan Conversion)。 </p>
+<p>三角形遍历阶段会根据上一个阶段的计算结果来判断一个三角网格覆盖了哪些像素，并使用三角网格3个顶点的顶点信息对整个覆盖区域的像素进行插值。</p>
+<p><img src="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/1737598159422.png" alt="1737598159422"></p>
+<h3 id="片元着色器-像素着色器-："><a href="#片元着色器-像素着色器-：" class="headerlink" title="片元着色器(像素着色器)："></a>片元着色器(像素着色器)：</h3><p>它主要完成对 三角形遍历输入的片元序列中的每个片元(像素)的着色计算和属性处理。片元着色器需要完成的工作主要有:</p>
+<p>1.光照计算 – 计算片元的光照效果。</p>
+<p>2.纹理映射 – 根据片元在纹理中的位置，对纹理进行采样，将纹理颜色映射到片元上，实现表面贴图效果- 根据材质的属性，比如颜色、透明度、反射率等，计算片元的最终颜色和透明度。</p>
+<p>3.材质属性处理。</p>
+<p>4.阴影计算 – 林根据光源等信息，计算片元是否处于阴影中，影响其最终颜色。</p>
+<p>etc.</p>
+<p>对于我们来说片元着色器是<strong>完全可编程</strong>的。</p>
+<p><img src="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/1737598375065.png" alt="1737598375065"></p>
+<h3 id="逐片元操作-："><a href="#逐片元操作-：" class="headerlink" title="逐片元操作 ："></a>逐片元操作 ：</h3><p>到了渲染流水线的最后一步。<strong>逐片元操作</strong>(Per-Fragment Operations)是OpenGL中的说法，在DirectX中，这一阶段被称为输出合并阶段(Output-Merger)。</p>
+<p>它主要完成对片元着色器输出数据(最终颜色、法线、纹理坐标、深度等)进行各种处理和计算。</p>
+<p>逐片元操作主要完成的工作主要有:</p>
+<p>1.决定每个片元的可见性，比如深度测试、模板测试</p>
+<p>2.如果通过了所有测试，需要把片元的颜色值和已经存储在颜色缓冲区的颜色进行合并(混合)等等。</p>
+<p>对于我们来说逐片元操作是<strong>可配置</strong>的。</p>
+<p><img src="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/1737598503286.png" alt="1737598503286"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yeageryuan.cc">YeagerYuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yeageryuan.cc/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/">http://yeageryuan.cc/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yeageryuan.cc" target="_blank">YEAGER在海的那边的小木屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/unity/">unity</a><a class="post-meta__tags" href="/tags/shader/">shader</a></div><div class="post_share"><div class="social-share" data-image="/pictures/mita0.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/01/22/cs2%E7%82%BC%E7%8B%B1%E5%B0%8F%E9%95%87%E9%81%93%E5%85%B7%E6%95%99%E5%AD%A6/" title="cs2炼狱小镇道具教学"><img class="cover" src="/pictures/inferno.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">cs2炼狱小镇道具教学</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/04/28/UnityVR%E6%89%8B%E9%83%A8%E5%8A%A8%E7%94%BB/" title="UnityVR手部动画"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-28</div><div class="title">UnityVR手部动画</div></div></a></div><div><a href="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/" title="Unity中HDRP下的水系统"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-28</div><div class="title">Unity中HDRP下的水系统</div></div></a></div><div><a href="/2023/12/03/Unity%E4%B8%AD%E7%9A%84%E5%9B%9B%E5%85%83%E6%95%B0/" title="Unity中的四元数"><img class="cover" src="/pictures/siyuanshu.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">Unity中的四元数</div></div></a></div><div><a href="/2023/11/04/Unity%E4%B8%AD%E7%9A%84Mathf-Lerp%E5%AE%9E%E7%8E%B0%E5%85%88%E5%BF%AB%E5%90%8E%E6%85%A2%E6%8E%A5%E8%BF%91%E4%B8%8E%E5%8C%80%E9%80%9F%E6%8E%A5%E8%BF%91/" title="Unity中的Mathf.Lerp实现先快后慢接近与匀速接近"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-04</div><div class="title">Unity中的Mathf.Lerp实现先快后慢接近与匀速接近</div></div></a></div><div><a href="/2023/04/16/%E5%85%B3%E4%BA%8Eunity%E4%B8%AD%E6%9D%90%E8%B4%A8%E7%9A%84%E5%AF%BC%E5%85%A5/" title="关于unity中材质的导入"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-16</div><div class="title">关于unity中材质的导入</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-calendar"><div class="card-content"><div class="item-headline"><i class="far fa-calendar-alt" aria-hidden="true"></i><span>考研倒计时</span></div><div class="widget-wrap"></div><div class="widget" id="calendar"></div></div></div><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">YeagerYuan</div><div class="author-info__description">要进来听听世界上最不自由的人讲述最自由的故事吗？</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">72</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/YeagerYuan"><i class="fab fa-github"></i><span>再多按一次就会爆炸</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎在评论区评论！记得挂好梯子，随便输个邮箱开匿名评论就行~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF"><span class="toc-number">1.</span> <span class="toc-text">什么是渲染管线?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E6%8C%87%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.</span> <span class="toc-text">渲染管线中的数据指的是什么?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B8%AD%E7%9A%84%E5%88%86%E9%98%B6%E6%AE%B5%E6%8C%87%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">3.</span> <span class="toc-text">渲染管线中的分阶段指的是什么?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E9%98%B6%E6%AE%B5"><span class="toc-number"></span> <span class="toc-text">应用阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E9%98%B6%E6%AE%B5"><span class="toc-number"></span> <span class="toc-text">几何阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B6%E7%82%B9%E7%9D%80%E8%89%B2%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">顶点着色器:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A3%81%E5%89%AA%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">裁剪：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%8F%E5%B9%95%E6%98%A0%E5%B0%84-%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">屏幕映射 ：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%89%E6%A0%85%E5%8C%96%E9%98%B6%E6%AE%B5"><span class="toc-number"></span> <span class="toc-text">光栅化阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E8%A7%92%E5%BD%A2%E8%AE%BE%E7%BD%AE%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">三角形设置：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E8%A7%92%E5%BD%A2%E9%81%8D%E5%8E%86-%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">三角形遍历 ：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%87%E5%85%83%E7%9D%80%E8%89%B2%E5%99%A8-%E5%83%8F%E7%B4%A0%E7%9D%80%E8%89%B2%E5%99%A8-%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">片元着色器(像素着色器)：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%90%E7%89%87%E5%85%83%E6%93%8D%E4%BD%9C-%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">逐片元操作 ：</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" title="Unity Shader入门笔记1"><img src="/pictures/mita0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Unity Shader入门笔记1"/></a><div class="content"><a class="title" href="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" title="Unity Shader入门笔记1">Unity Shader入门笔记1</a><time datetime="2025-01-22T13:04:01.000Z" title="发表于 2025-01-22 21:04:01">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/cs2%E7%82%BC%E7%8B%B1%E5%B0%8F%E9%95%87%E9%81%93%E5%85%B7%E6%95%99%E5%AD%A6/" title="cs2炼狱小镇道具教学"><img src="/pictures/inferno.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="cs2炼狱小镇道具教学"/></a><div class="content"><a class="title" href="/2025/01/22/cs2%E7%82%BC%E7%8B%B1%E5%B0%8F%E9%95%87%E9%81%93%E5%85%B7%E6%95%99%E5%AD%A6/" title="cs2炼狱小镇道具教学">cs2炼狱小镇道具教学</a><time datetime="2025-01-22T08:46:44.000Z" title="发表于 2025-01-22 16:46:44">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/18/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/" title="Csharp学习笔记-2"><img src="/pictures/codingSakura.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Csharp学习笔记-2"/></a><div class="content"><a class="title" href="/2025/01/18/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/" title="Csharp学习笔记-2">Csharp学习笔记-2</a><time datetime="2025-01-18T08:47:32.000Z" title="发表于 2025-01-18 16:47:32">2025-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/17/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/" title="Csharp学习笔记-1"><img src="/pictures/codingSakura.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Csharp学习笔记-1"/></a><div class="content"><a class="title" href="/2025/01/17/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/" title="Csharp学习笔记-1">Csharp学习笔记-1</a><time datetime="2025-01-17T07:30:43.000Z" title="发表于 2025-01-17 15:30:43">2025-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/17/%E6%A2%A6%E4%B8%AD%E7%9A%84%E7%8B%AC%E6%B8%B8%E2%80%94%E2%80%94%E7%B1%B3%E5%A1%94MiSide/" title="梦中的独游——米塔MiSide"><img src="/pictures/mita.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="梦中的独游——米塔MiSide"/></a><div class="content"><a class="title" href="/2025/01/17/%E6%A2%A6%E4%B8%AD%E7%9A%84%E7%8B%AC%E6%B8%B8%E2%80%94%E2%80%94%E7%B1%B3%E5%A1%94MiSide/" title="梦中的独游——米塔MiSide">梦中的独游——米塔MiSide</a><time datetime="2025-01-17T03:37:52.000Z" title="发表于 2025-01-17 11:37:52">2025-01-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By YeagerYuan</div><div class="footer_custom_text">有空就来看看吧，我的朋友</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://yeageryuan.cc/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/'
+    this.page.identifier = '/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/'
+    this.page.title = 'Unity Shader入门笔记1'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://yeageryuan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="你也在,寻找,所谓的,自由吗" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

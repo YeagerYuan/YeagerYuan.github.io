@@ -30,10 +30,10 @@
 
   /*violet*/
   #web_bg {
-    background: -webkit-linear-gradient(to right, rgb(49, 222, 170), rgb(222, 249, 240)); 
-    background: -o-linear-gradient(to right, rgb(49, 222, 170), rgb(222, 249, 240)); 
-    background: -moz-linear-gradient(to right, rgb(49, 222, 170), rgb(222, 249, 240)); 
-    background: linear-gradient(to right, rgb(49, 222, 170), rgb(222, 249, 240));
+    background: -webkit-linear-gradient(to right, rgb(194, 79, 247), rgb(215, 186, 221)); 
+    background: -o-linear-gradient(to right, rgb(173, 41, 235), rgb(230, 182, 240)); 
+    background: -moz-linear-gradient(to right, rgb(173, 41, 235), rgb(153, 135, 156)); 
+    background: linear-gradient(to right, rgb(173, 41, 235), rgb(67, 13, 78));
   }
 
   
