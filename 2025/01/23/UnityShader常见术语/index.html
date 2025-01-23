@@ -1,0 +1,510 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UnityShader常见术语 | YEAGER在海的那边的小木屋</title><meta name="author" content="YeagerYuan"><meta name="copyright" content="YeagerYuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="OpenGL 和 DirectXOpenGL 和 DirectX 都是计算机图形和游戏开发中常用的图形渲染接口（API），它们提供了一组工具和规范，允许开发者控制硬件来创建图形和处理多媒体内容。虽然它们的核心功能相似，但它们有不同的历史背景、平台支持和设计哲学。 1. OpenGL（Open Graphics Library）概述 开放标准：OpenGL 是一个跨平台的图形渲染 API，最初由硅图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UnityShader常见术语">
+<meta property="og:url" content="http://yeageryuan.cc/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/index.html">
+<meta property="og:site_name" content="YEAGER在海的那边的小木屋">
+<meta property="og:description" content="OpenGL 和 DirectXOpenGL 和 DirectX 都是计算机图形和游戏开发中常用的图形渲染接口（API），它们提供了一组工具和规范，允许开发者控制硬件来创建图形和处理多媒体内容。虽然它们的核心功能相似，但它们有不同的历史背景、平台支持和设计哲学。 1. OpenGL（Open Graphics Library）概述 开放标准：OpenGL 是一个跨平台的图形渲染 API，最初由硅图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yeageryuan.cc/pictures/mitacrazy.png">
+<meta property="article:published_time" content="2025-01-23T05:45:16.000Z">
+<meta property="article:modified_time" content="2025-01-23T06:02:12.041Z">
+<meta property="article:author" content="YeagerYuan">
+<meta property="article:tag" content="unity">
+<meta property="article:tag" content="shader">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yeageryuan.cc/pictures/mitacrazy.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yeageryuan.cc/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UnityShader常见术语',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-23 14:02:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/beauty.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa fa-commenting"></i><span> 研记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 灵感</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 好图</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 柔耳</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 醒目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 安利</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 悄悄话</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/pictures/mitacrazy.png')"><nav id="nav"><span id="blog-info"><a href="/" title="YEAGER在海的那边的小木屋"><span class="site-name">YEAGER在海的那边的小木屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa fa-commenting"></i><span> 研记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 灵感</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 好图</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 柔耳</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 醒目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 安利</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 悄悄话</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UnityShader常见术语</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-23T05:45:16.000Z" title="发表于 2025-01-23 13:45:16">2025-01-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-23T06:02:12.041Z" title="更新于 2025-01-23 14:02:12">2025-01-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UnityShader常见术语"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="OpenGL-和-DirectX"><a href="#OpenGL-和-DirectX" class="headerlink" title="OpenGL 和 DirectX"></a><strong>OpenGL</strong> 和 <strong>DirectX</strong></h1><p><strong>OpenGL</strong> 和 <strong>DirectX</strong> 都是计算机图形和游戏开发中常用的图形渲染接口（API），它们提供了一组工具和规范，允许开发者控制硬件来创建图形和处理多媒体内容。虽然它们的核心功能相似，但它们有不同的历史背景、平台支持和设计哲学。</p>
+<h3 id="1-OpenGL（Open-Graphics-Library）"><a href="#1-OpenGL（Open-Graphics-Library）" class="headerlink" title="1. OpenGL（Open Graphics Library）"></a><strong>1. OpenGL（Open Graphics Library）</strong></h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a><strong>概述</strong></h4><ul>
+<li><strong>开放标准</strong>：OpenGL 是一个跨平台的图形渲染 API，最初由硅图形（SGI）公司于 1992 年开发，现在由非盈利组织 <strong>Khronos Group</strong> 维护。它是一个开放标准，意味着任何公司或开发者都可以免费使用和实现它。</li>
+<li><strong>跨平台支持</strong>：OpenGL 主要支持跨平台操作系统，如 Windows、Linux、macOS（虽然 Apple 现在推崇 Metal）以及一些移动平台（通过 OpenGL ES）。</li>
+<li><strong>灵活性</strong>：OpenGL 是一个比较低层次的 API，提供了大量的可配置选项，可以允许开发者非常精细地控制图形渲染过程。</li>
+</ul>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a><strong>优点</strong></h4><ul>
+<li><strong>跨平台</strong>：OpenGL 可以在多种操作系统上运行，因此，基于 OpenGL 的应用程序可以更容易地在不同平台间移植。</li>
+<li><strong>开放性</strong>：作为一个开放标准，OpenGL 的文档和规范可以免费访问，且得到了广泛的支持。</li>
+<li><strong>成熟的社区支持</strong>：OpenGL 拥有丰富的教程、开发工具和开源项目，有庞大的开发者社区支持。</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a><strong>缺点</strong></h4><ul>
+<li><strong>性能问题</strong>：由于其抽象层较高，OpenGL 相比 DirectX 可能在一些平台上的性能较差。</li>
+<li><strong>较为复杂</strong>：OpenGL 对开发者的要求较高，提供了大量的自由度，这可能会导致开发变得复杂。</li>
+</ul>
+<h4 id="应用领域"><a href="#应用领域" class="headerlink" title="应用领域"></a><strong>应用领域</strong></h4><ul>
+<li>OpenGL 主要用于游戏、3D 图形、科学计算（如计算机辅助设计 CAD）、虚拟现实、图像处理等领域。</li>
+</ul>
+<h3 id="2-DirectX"><a href="#2-DirectX" class="headerlink" title="2. DirectX"></a><strong>2. DirectX</strong></h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a><strong>概述</strong></h4><ul>
+<li><strong>微软的专有技术</strong>：DirectX 是由微软开发并为 Windows 平台量身定制的多媒体接口，首次发布于 1995 年。它包括多个子组件，其中 <strong>Direct3D</strong> 是专门用于图形渲染的部分，类似于 OpenGL。</li>
+<li><strong>Windows 专用</strong>：与 OpenGL 的跨平台支持不同，DirectX 只适用于 Windows 操作系统和 Xbox 游戏机。虽然 DirectX 的某些功能（如 DirectCompute）也能在其他平台上运行，但 Direct3D 主要用于 Windows 平台。</li>
+</ul>
+<h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a><strong>优点</strong></h4><ul>
+<li><strong>优化的性能</strong>：由于 DirectX 是专为 Windows 平台设计的，微软能够在操作系统层面对其进行优化，因此它在 Windows 上的性能通常优于 OpenGL。</li>
+<li><strong>紧密集成</strong>：DirectX 与 Windows 操作系统和硬件的集成更为紧密，因此它能够更好地利用 Windows 系统提供的功能和硬件加速。</li>
+<li><strong>更易上手</strong>：与 OpenGL 相比，DirectX 的 API 在一些情况下设计得更加简洁易用，尤其是在开发游戏时，微软为 DirectX 提供了丰富的工具和库，帮助开发者更快上手。</li>
+</ul>
+<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a><strong>缺点</strong></h4><ul>
+<li><strong>平台限制</strong>：DirectX 仅限于 Windows 和 Xbox 系统，这使得它在跨平台开发时受限。虽然通过工具如 Wine 可以在 Linux 上运行 DirectX 应用，但这并不是一个完美的解决方案。</li>
+<li><strong>封闭性</strong>：作为一个专有技术，DirectX 不是开放标准，微软控制着其更新和发展，某些方面的文档和实现并不如 OpenGL 那样透明。</li>
+</ul>
+<h4 id="应用领域-1"><a href="#应用领域-1" class="headerlink" title="应用领域"></a><strong>应用领域</strong></h4><ul>
+<li>DirectX 是 Windows 上最常用的图形 API，尤其在游戏开发领域。许多 Windows 游戏和基于 Xbox 的游戏都依赖 Direct3D（DirectX 的一部分）来进行图形渲染。</li>
+</ul>
+<h3 id="OpenGL-vs-DirectX-的比较"><a href="#OpenGL-vs-DirectX-的比较" class="headerlink" title="OpenGL vs DirectX 的比较"></a><strong>OpenGL vs DirectX 的比较</strong></h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th><strong>OpenGL</strong></th>
+<th><strong>DirectX</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>平台支持</strong></td>
+<td>跨平台（Windows、Linux、macOS、移动设备等）</td>
+<td>主要支持 Windows 和 Xbox</td>
+</tr>
+<tr>
+<td><strong>开源与闭源</strong></td>
+<td>开源，开发者可以自由使用和修改</td>
+<td>封闭，微软控制开发和更新</td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td>在跨平台应用中有时不如 DirectX 高效</td>
+<td>在 Windows 上经过优化，通常性能更好</td>
+</tr>
+<tr>
+<td><strong>API 复杂度</strong></td>
+<td>较为复杂，提供更多灵活性和控制</td>
+<td>相对较简洁，易于上手</td>
+</tr>
+<tr>
+<td><strong>文档和支持</strong></td>
+<td>文档和社区支持广泛，跨平台开发社区活跃</td>
+<td>主要针对 Windows 平台，文档和工具完善</td>
+</tr>
+<tr>
+<td><strong>开发工具支持</strong></td>
+<td>可以在多种平台上使用各类开发工具</td>
+<td>紧密集成于 Visual Studio 等工具</td>
+</tr>
+</tbody></table>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><ul>
+<li><strong>OpenGL</strong> 适合那些需要跨平台支持的应用程序和开发者，尤其是那些需要灵活控制渲染细节的场景，如学术研究、跨平台游戏开发等。</li>
+<li><strong>DirectX</strong> 则更加适合 Windows 平台的开发，尤其是在游戏和图形密集型应用中，由于其对 Windows 系统和硬件的优化，通常提供更高的性能和更好的支持。</li>
+</ul>
+<p>对于游戏开发者来说，<strong>DirectX</strong> 通常是 Windows 游戏开发的首选，而对于跨平台应用或者需要支持多种操作系统的开发者来说，<strong>OpenGL</strong>（或其衍生的 Vulkan）则可能是更好的选择。</p>
+<p><img src="/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/1737611317237.png" alt="1737611317237"></p>
+<h1 id="HLSL、GLSL-和Cg"><a href="#HLSL、GLSL-和Cg" class="headerlink" title="HLSL、GLSL 和Cg"></a><strong>HLSL</strong>、<strong>GLSL</strong> 和<strong>Cg</strong></h1><p><strong>HLSL</strong>（High-Level Shading Language）、<strong>GLSL</strong>（OpenGL Shading Language）和 <strong>Cg</strong>（C for Graphics）都是用于编写图形着色器（shaders）的编程语言。它们的主要用途是为图形处理单元（GPU）编写程序，以执行特定的图形计算任务，比如渲染、光照、纹理映射等。这些着色器程序会在图形渲染管线中运行，以实现复杂的视觉效果。</p>
+<p>下面是这三种语言的详细介绍：</p>
+<hr>
+<h3 id="1-HLSL-High-Level-Shading-Language"><a href="#1-HLSL-High-Level-Shading-Language" class="headerlink" title="1. HLSL (High-Level Shading Language)"></a><strong>1. HLSL (High-Level Shading Language)</strong></h3><h4 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a><strong>概述</strong></h4><ul>
+<li><strong>HLSL</strong> 是微软为 <strong>DirectX</strong> 提供的着色器语言，用于在 <strong>Direct3D</strong> 环境中编写着色器程序。</li>
+<li>它是 <strong>高层次的着色器语言</strong>，语法类似于 C，且专为 GPU 编程设计。</li>
+<li>通过 HLSL，开发者可以编写各种类型的着色器，如 <strong>顶点着色器</strong>、<strong>像素着色器</strong>、<strong>几何着色器</strong>、<strong>计算着色器</strong> 等。</li>
+</ul>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a><strong>特点</strong></h4><ul>
+<li><strong>平台依赖</strong>：HLSL 仅在 Windows 和 Xbox 平台上使用，因为它与 DirectX（特别是 Direct3D）紧密集成。</li>
+<li><strong>强大的功能</strong>：提供了大量的图形编程功能，允许开发者控制渲染管线的各个阶段。</li>
+<li><strong>语法简洁</strong>：类似于 C&#x2F;C++，这使得它对大多数熟悉 C 语言的程序员更易于上手。</li>
+</ul>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a><strong>应用场景</strong></h4><ul>
+<li>用于 Windows 和 Xbox 平台的游戏和图形应用开发，特别是 DirectX 环境下的图形渲染编程。</li>
+</ul>
+<h4 id="示例（HLSL）"><a href="#示例（HLSL）" class="headerlink" title="示例（HLSL）"></a><strong>示例（HLSL）</strong></h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct PS_INPUT</span><br><span class="line">&#123;</span><br><span class="line">    float4 pos : POSITION;</span><br><span class="line">    float4 color : COLOR;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">float4 main(PS_INPUT input) : SV_Target</span><br><span class="line">&#123;</span><br><span class="line">    return input.color;  // 输出颜色</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-GLSL-OpenGL-Shading-Language"><a href="#2-GLSL-OpenGL-Shading-Language" class="headerlink" title="2. GLSL (OpenGL Shading Language)"></a><strong>2. GLSL (OpenGL Shading Language)</strong></h3><h4 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a><strong>概述</strong></h4><ul>
+<li><strong>GLSL</strong> 是 <strong>OpenGL</strong> 使用的着色器语言，设计目的是为 OpenGL 提供一种高效的、与平台无关的图形编程方式。</li>
+<li>它是与 OpenGL 和 OpenGL ES 配套的，支持顶点着色器、片段着色器（即像素着色器）、几何着色器等类型的着色器。</li>
+</ul>
+<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a><strong>特点</strong></h4><ul>
+<li><strong>跨平台</strong>：GLSL 是 OpenGL 的一部分，因此它可以在支持 OpenGL 的任何平台上运行（如 Windows、Linux、macOS、Android、iOS 等）。</li>
+<li><strong>灵活性</strong>：GLSL 允许开发者编写高效的图形程序，并且它支持现代图形渲染的多种特性，如 <strong>计算着色器</strong>、<strong>光照模型</strong>、<strong>纹理处理</strong> 等。</li>
+<li><strong>与 OpenGL 紧密结合</strong>：GLSL 是 OpenGL 的一部分，它直接操作 OpenGL 渲染管线中的数据，简化了与图形硬件的交互。</li>
+</ul>
+<h4 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a><strong>应用场景</strong></h4><ul>
+<li>用于所有支持 OpenGL 和 OpenGL ES 的平台，包括桌面、移动设备以及嵌入式系统。</li>
+</ul>
+<h4 id="示例（GLSL）"><a href="#示例（GLSL）" class="headerlink" title="示例（GLSL）"></a><strong>示例（GLSL）</strong></h4><figure class="highlight glsl"><table><tr><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"><span class="keyword">in</span> <span class="type">vec4</span> color;</span><br><span class="line"><span class="keyword">out</span> <span class="type">vec4</span> FragColor;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    FragColor = color;  <span class="comment">// 输出颜色</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-Cg-C-for-Graphics"><a href="#3-Cg-C-for-Graphics" class="headerlink" title="3. Cg (C for Graphics)"></a><strong>3. Cg (C for Graphics)</strong></h3><h4 id="概述-4"><a href="#概述-4" class="headerlink" title="概述"></a><strong>概述</strong></h4><ul>
+<li><strong>Cg</strong> 是 <strong>NVIDIA</strong> 开发的图形着色器语言，旨在提供一种跨平台的着色器编程语言，它的语法类似于 C 语言。</li>
+<li>Cg 在设计时参考了 HLSL 和 GLSL，试图结合两者的优点。它在早期广泛用于 <strong>OpenGL</strong> 和 <strong>DirectX</strong> 环境中，但近年来逐渐被 <strong>HLSL</strong> 和 <strong>GLSL</strong> 取代。</li>
+<li>Cg 提供了丰富的图形编程功能，并且可以生成针对不同平台和图形 API（如 DirectX 和 OpenGL）的代码。</li>
+</ul>
+<h4 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a><strong>特点</strong></h4><ul>
+<li><strong>跨平台</strong>：Cg 最初被设计为可以在多种图形 API（包括 OpenGL 和 DirectX）中使用，因此它有跨平台的优势。</li>
+<li><strong>工具支持</strong>：NVIDIA 提供了 Cg 的编译器和工具，帮助开发者生成优化的着色器代码。</li>
+<li><strong>已过时</strong>：由于 HLSL 和 GLSL 的广泛应用，NVIDIA 已不再积极更新 Cg，目前已经不再作为主流的图形编程语言。</li>
+</ul>
+<h4 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a><strong>应用场景</strong></h4><ul>
+<li>以前用于开发跨平台的图形应用，特别是在 OpenGL 和 DirectX 环境下。但如今它的使用逐渐减少，开发者更多使用 HLSL 和 GLSL。</li>
+</ul>
+<h4 id="示例（Cg）"><a href="#示例（Cg）" class="headerlink" title="示例（Cg）"></a><strong>示例（Cg）</strong></h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">struct PS_INPUT</span><br><span class="line">&#123;</span><br><span class="line">    float4 pos : POSITION;</span><br><span class="line">    float4 color : COLOR;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">float4 main(PS_INPUT input) : COLOR</span><br><span class="line">&#123;</span><br><span class="line">    return input.color;  // 输出颜色</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="比较：HLSL、GLSL、Cg"><a href="#比较：HLSL、GLSL、Cg" class="headerlink" title="比较：HLSL、GLSL、Cg"></a><strong>比较：HLSL、GLSL、Cg</strong></h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th><strong>HLSL</strong></th>
+<th><strong>GLSL</strong></th>
+<th><strong>Cg</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>平台支持</strong></td>
+<td>主要用于 Windows 和 Xbox（DirectX）</td>
+<td>跨平台支持（Windows、Linux、macOS 等）</td>
+<td>跨平台支持（OpenGL 和 DirectX）</td>
+</tr>
+<tr>
+<td><strong>语言风格</strong></td>
+<td>类似 C&#x2F;C++，语法清晰简洁</td>
+<td>类似 C，易于理解，接近硬件编程</td>
+<td>类似 C，融合了 HLSL 和 GLSL 的优点</td>
+</tr>
+<tr>
+<td><strong>功能性</strong></td>
+<td>强大，特别是在 Direct3D 环境下</td>
+<td>强大，专为 OpenGL 环境设计</td>
+<td>早期强大，但现在逐渐被 HLSL 和 GLSL 取代</td>
+</tr>
+<tr>
+<td><strong>主流使用</strong></td>
+<td>游戏、图形开发，特别是在 Windows 平台</td>
+<td>游戏开发、图形应用，支持广泛平台</td>
+<td>过去用于跨平台开发，但现已过时</td>
+</tr>
+<tr>
+<td><strong>未来前景</strong></td>
+<td>强大且继续更新，尤其在 DirectX 中</td>
+<td>广泛使用，特别是在跨平台应用中</td>
+<td>已不再更新，逐渐被淘汰</td>
+</tr>
+</tbody></table>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a><strong>总结</strong></h3><ul>
+<li><strong>HLSL</strong>：专为 DirectX 环境设计，主要用于 Windows 和 Xbox 游戏开发，性能优化较好，功能强大。</li>
+<li><strong>GLSL</strong>：与 OpenGL 紧密集成，支持跨平台应用，适用于桌面、移动和嵌入式平台的图形开发。</li>
+<li><strong>Cg</strong>：早期为跨平台图形开发设计，但现在被 HLSL 和 GLSL 取代，逐渐过时。</li>
+</ul>
+<p>如今，开发者通常根据所选平台和图形 API 来选择合适的着色器语言：如果是 Windows 和 Xbox 平台，使用 HLSL；如果是跨平台应用，使用 GLSL。Cg 曾经有一定的影响力，但现在已不再是主流选择。对于Unity平台，我们同样可以选择使用哪种语言。在Unity Shader中，我们可以<strong>选择使用 “CG&#x2F;HLSL”或者“GLSL”</strong>。带引号是因为Unity里的这些着色语言并不是真正意义上的对应的着色语言，尽管它们的语法几乎一样。以Unity CG为例，你有时会发现有些CG语法在Unity Shader中是不支持的。</p>
+<h1 id="Draw-Call"><a href="#Draw-Call" class="headerlink" title="Draw Call"></a><strong>Draw Call</strong></h1><p><strong>Draw Call</strong> 是计算机图形学中的一个术语，指的是向图形处理单元（GPU）发出的一次请求，要求它渲染（绘制）一个或多个图形元素（如三角形、纹理、顶点等）。每个 Draw Call 通常代表一次对 GPU 的操作，它告诉 GPU 需要渲染的内容以及如何渲染。</p>
+<h3 id="详细解释"><a href="#详细解释" class="headerlink" title="详细解释"></a><strong>详细解释</strong></h3><p>在现代的图形渲染中，GPU 执行渲染操作时，会接收来自 CPU 的一系列指令（这些指令包括顶点数据、材质、纹理、光照等信息）。每个 Draw Call 就是这种指令的一个集合，包含了关于如何绘制某个图形的详细信息。通常情况下，一个 Draw Call 可能会涉及到以下内容：</p>
+<ul>
+<li><strong>顶点数据</strong>：比如一个三角形的三个顶点的坐标。</li>
+<li><strong>纹理数据</strong>：图像或纹理应用到图形表面的方式。</li>
+<li><strong>着色器</strong>：控制渲染效果的程序（如顶点着色器和片段着色器）。</li>
+<li><strong>渲染目标</strong>：要渲染到的帧缓冲或图像。</li>
+</ul>
+<h3 id="简单的-Draw-Call-流程"><a href="#简单的-Draw-Call-流程" class="headerlink" title="简单的 Draw Call 流程"></a><strong>简单的 Draw Call 流程</strong></h3><ol>
+<li><strong>CPU 发出 Draw Call</strong>：游戏或应用程序的 CPU 会通过调用 API（如 OpenGL、DirectX 或 Vulkan）发出一个 Draw Call，请求 GPU 渲染指定的几何体。</li>
+<li><strong>GPU 执行渲染</strong>：GPU 会使用这个指令中包含的数据（如顶点、纹理、着色器等），然后渲染出图形。</li>
+<li><strong>输出图像</strong>：GPU 渲染后的图形会被输出到屏幕或渲染目标（如一个纹理）。</li>
+</ol>
+<p><img src="/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/1737611739112.png" alt="1737611739112"></p>
+<h3 id="如何优化-Draw-Call"><a href="#如何优化-Draw-Call" class="headerlink" title="如何优化 Draw Call"></a><strong>如何优化 Draw Call</strong></h3><p>优化 Draw Call 的目的是减少每帧中发出的 Draw Call 数量，这可以通过以下方式实现：</p>
+<ol>
+<li><strong>合并绘制操作</strong>：<ul>
+<li><strong>批量渲染</strong>：将多个物体的渲染合并为一次 Draw Call。例如，多个静态物体可以放入同一个批次，使用相同的材质和纹理来减少 Draw Call。</li>
+<li><strong>实例化渲染（Instancing）</strong>：当多个物体具有相同的几何体结构但不同的位置、缩放或旋转时，可以使用实例化渲染，将所有实例的绘制合并为一个 Draw Call。这样，只需发送一次 Draw Call，就能渲染多个相同物体。</li>
+</ul>
+</li>
+<li><strong>减少状态切换</strong>：<ul>
+<li>GPU 渲染时需要设置各种状态（如纹理、着色器等）。频繁地切换这些状态（例如更换纹理或着色器）会增加开销。优化时，尽量保持状态的一致性，减少不必要的切换。</li>
+</ul>
+</li>
+<li><strong>合并多个小物体</strong>：<ul>
+<li>如果场景中有很多小物体，可以将它们合并成更大的几何体，减少每个物体的独立 Draw Call。</li>
+</ul>
+</li>
+<li><strong>使用合适的渲染 API</strong>：<ul>
+<li>一些现代的渲染 API（如 <strong>Vulkan</strong> 和 <strong>DirectX 12</strong>）允许开发者更细粒度地控制 GPU 和 CPU 之间的交互，优化 Draw Call 的发出时机，从而减轻性能负担。</li>
+</ul>
+</li>
+</ol>
+<h3 id="Draw-Call-示例"><a href="#Draw-Call-示例" class="headerlink" title="Draw Call 示例"></a><strong>Draw Call 示例</strong></h3><p>假设我们要渲染一个简单的场景，包含一个立方体和一个球体。每个物体都有自己的纹理和着色器。如果我们分别为每个物体发出一个 Draw Call，那么会有两个 Draw Call：一个用于渲染立方体，另一个用于渲染球体。</p>
+<ul>
+<li><strong>高效的做法</strong>：如果立方体和球体使用相同的材质和纹理，可以将它们合并成一个 Draw Call，通过批量渲染或者实例化渲染来减少 Draw Call 数量。</li>
+</ul>
+<h1 id="固定管线渲染"><a href="#固定管线渲染" class="headerlink" title="固定管线渲染"></a><strong>固定管线渲染</strong></h1><p><strong>固定管线渲染</strong>（Fixed-Function Pipeline Rendering）是指在计算机图形学中，一种由图形 API 提供的预定义的、不可定制的渲染管线，它以固定的顺序执行一系列图形处理步骤。也就是说，渲染过程中的各个步骤已经被硬件或 API 固定下来，开发者无法修改或控制这些步骤的执行顺序或具体实现。</p>
+<p>在早期的图形硬件（GPU）中，固定管线渲染是最常用的方式，开发者通过调用图形 API（如 OpenGL 或 DirectX）中的固定功能，来完成图形的渲染任务。这些功能包括光照、纹理映射、颜色混合、裁剪等。</p>
+<h3 id="固定管线渲染的工作原理"><a href="#固定管线渲染的工作原理" class="headerlink" title="固定管线渲染的工作原理"></a><strong>固定管线渲染的工作原理</strong></h3><p>固定管线渲染通常遵循以下几个主要阶段（顺序可能略有不同，取决于具体的 API 和硬件）：</p>
+<ol>
+<li><strong>模型变换（Model Transformation）</strong>：<ul>
+<li>将物体的顶点从物体坐标系变换到世界坐标系。这是通过一个变换矩阵完成的，通常是物体位置、旋转和缩放的组合。</li>
+</ul>
+</li>
+<li><strong>视图变换（View Transformation）</strong>：<ul>
+<li>将物体从世界坐标系变换到观察者的视图坐标系（也叫视图空间或相机坐标系）。这个变换是为了模拟观察者的视角。</li>
+</ul>
+</li>
+<li><strong>投影变换（Projection Transformation）</strong>：<ul>
+<li>将视图空间中的顶点投影到二维视口上（屏幕上的坐标）。常见的投影方式包括透视投影（模拟现实世界的视角）和正交投影（无透视效果，常用于技术绘图或2D应用）。</li>
+</ul>
+</li>
+<li><strong>裁剪（Clipping）</strong>：<ul>
+<li>剔除那些不在视锥体内的物体，这样就避免了绘制不在视野中的物体，提高了渲染效率。</li>
+</ul>
+</li>
+<li><strong>光栅化（Rasterization）</strong>：<ul>
+<li>将三维场景中的几何体（通常是三角形）转换为二维图像的像素或片元。每个像素或片元都会有颜色、深度等属性。</li>
+</ul>
+</li>
+<li><strong>纹理映射（Texture Mapping）</strong>：<ul>
+<li>在光栅化后的片元上应用纹理图像，赋予物体更多的细节和真实感。</li>
+</ul>
+</li>
+<li><strong>光照（Lighting）</strong>：<ul>
+<li>根据物体的表面特性、光源的位置和方向，计算每个片元的光照值。固定管线的光照模型通常比较简单，只有一些基本的光照模型（如环境光、漫反射和镜面反射）。</li>
+</ul>
+</li>
+<li><strong>颜色混合和输出（Blending and Output）</strong>：<ul>
+<li>在最终的颜色输出阶段，应用颜色混合（例如透明度效果）并将最终的像素颜色输出到帧缓冲中，准备显示在屏幕上。</li>
+</ul>
+</li>
+</ol>
+<h3 id="固定管线渲染的特点"><a href="#固定管线渲染的特点" class="headerlink" title="固定管线渲染的特点"></a><strong>固定管线渲染的特点</strong></h3><ol>
+<li><strong>不可定制</strong>：<ul>
+<li>固定管线的渲染过程是预定义的，开发者无法控制渲染的每个步骤或添加新的步骤。例如，光照、纹理映射和着色等过程都有固定的实现方式，无法改变。</li>
+</ul>
+</li>
+<li><strong>简单易用</strong>：<ul>
+<li>由于渲染过程已经预定义好，开发者不需要关心复杂的图形编程细节，使用固定管线的开发工作量较少。适合于那些不需要高度自定义渲染的应用场景。</li>
+</ul>
+</li>
+<li><strong>硬件加速</strong>：<ul>
+<li>在早期的图形硬件上，固定管线的操作往往是由硬件直接加速的，这使得渲染过程非常高效和快速。</li>
+</ul>
+</li>
+<li><strong>局限性</strong>：<ul>
+<li>固定管线的局限性在于它的灵活性差。由于所有操作都是固定的，开发者无法根据需要定制或优化渲染管线。例如，光照模型和材质处理等都没有办法像现代的 <strong>可编程管线</strong> 那样进行自定义。</li>
+</ul>
+</li>
+</ol>
+<h3 id="固定管线渲染的历史和发展"><a href="#固定管线渲染的历史和发展" class="headerlink" title="固定管线渲染的历史和发展"></a><strong>固定管线渲染的历史和发展</strong></h3><p>在图形硬件发展早期，所有的图形操作都通过固定管线来完成。随着 GPU 技术的不断进步，特别是可编程 GPU 的出现，渲染管线逐步变得更加灵活和可定制。</p>
+<ul>
+<li><strong>OpenGL 2.x 和 DirectX 9</strong> 时代，固定管线仍然是主流，但引入了 <strong>着色器</strong>（Shader）的概念，使得部分渲染过程（如光照、纹理等）可以通过编程来进行定制，但仍保留了固定管线的部分功能。</li>
+<li><strong>OpenGL 3.x 和 DirectX 10 及之后版本</strong>，固定管线逐渐被 <strong>可编程管线</strong> 取代，允许开发者编写顶点着色器、片段着色器等程序来完全控制渲染过程。这种方式提供了更高的灵活性，但也需要开发者具备更多的图形编程知识。</li>
+</ul>
+<h3 id="固定管线与可编程管线的比较"><a href="#固定管线与可编程管线的比较" class="headerlink" title="固定管线与可编程管线的比较"></a><strong>固定管线与可编程管线的比较</strong></h3><table>
+<thead>
+<tr>
+<th>特性</th>
+<th><strong>固定管线渲染</strong></th>
+<th><strong>可编程管线渲染</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>灵活性</strong></td>
+<td>低，渲染过程不可定制</td>
+<td>高，开发者可以自定义顶点着色器、片段着色器等</td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td>由于是固定的硬件加速，通常性能较好</td>
+<td>更灵活但可能需要更多的优化与调整</td>
+</tr>
+<tr>
+<td><strong>开发难度</strong></td>
+<td>较低，开发者只需调用 API</td>
+<td>较高，开发者需要编写着色器程序</td>
+</tr>
+<tr>
+<td><strong>可控性</strong></td>
+<td>不可控制，API 完全固定</td>
+<td>完全控制渲染管线，可以实现复杂效果</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>简单的渲染任务，较早的硬件或简单应用</td>
+<td>需要高自定义的复杂渲染任务，如现代游戏</td>
+</tr>
+</tbody></table>
+<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a><strong>总结</strong></h3><p><strong>固定管线渲染</strong> 是早期图形硬件和渲染 API 的标准渲染方式，具有简单易用、硬件加速等特点，但缺乏灵活性，无法提供复杂的自定义渲染控制。随着图形硬件和渲染 API 的发展，固定管线逐渐被 <strong>可编程管线</strong> 替代，使得开发者能够编写着色器程序来完全控制渲染过程，提供了更高的灵活性和功能，适应了现代图形和游戏的需求。如果不是为了对较旧的设备进行兼容，不建议继续使用固定管线的渲染方式。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yeageryuan.cc">YeagerYuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yeageryuan.cc/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/">http://yeageryuan.cc/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yeageryuan.cc" target="_blank">YEAGER在海的那边的小木屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/unity/">unity</a><a class="post-meta__tags" href="/tags/shader/">shader</a></div><div class="post_share"><div class="social-share" data-image="/pictures/mitacrazy.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" title="Unity Shader入门笔记1"><img class="cover" src="/pictures/mita0.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Unity Shader入门笔记1</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" title="Unity Shader入门笔记1"><img class="cover" src="/pictures/mita0.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-22</div><div class="title">Unity Shader入门笔记1</div></div></a></div><div><a href="/2024/04/28/UnityVR%E6%89%8B%E9%83%A8%E5%8A%A8%E7%94%BB/" title="UnityVR手部动画"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-28</div><div class="title">UnityVR手部动画</div></div></a></div><div><a href="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/" title="Unity中HDRP下的水系统"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-28</div><div class="title">Unity中HDRP下的水系统</div></div></a></div><div><a href="/2023/12/03/Unity%E4%B8%AD%E7%9A%84%E5%9B%9B%E5%85%83%E6%95%B0/" title="Unity中的四元数"><img class="cover" src="/pictures/siyuanshu.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">Unity中的四元数</div></div></a></div><div><a href="/2023/11/04/Unity%E4%B8%AD%E7%9A%84Mathf-Lerp%E5%AE%9E%E7%8E%B0%E5%85%88%E5%BF%AB%E5%90%8E%E6%85%A2%E6%8E%A5%E8%BF%91%E4%B8%8E%E5%8C%80%E9%80%9F%E6%8E%A5%E8%BF%91/" title="Unity中的Mathf.Lerp实现先快后慢接近与匀速接近"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-04</div><div class="title">Unity中的Mathf.Lerp实现先快后慢接近与匀速接近</div></div></a></div><div><a href="/2023/04/16/%E5%85%B3%E4%BA%8Eunity%E4%B8%AD%E6%9D%90%E8%B4%A8%E7%9A%84%E5%AF%BC%E5%85%A5/" title="关于unity中材质的导入"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-16</div><div class="title">关于unity中材质的导入</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-calendar"><div class="card-content"><div class="item-headline"><i class="far fa-calendar-alt" aria-hidden="true"></i><span>考研倒计时</span></div><div class="widget-wrap"></div><div class="widget" id="calendar"></div></div></div><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">YeagerYuan</div><div class="author-info__description">要进来听听世界上最不自由的人讲述最自由的故事吗？</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/YeagerYuan"><i class="fab fa-github"></i><span>再多按一次就会爆炸</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎在评论区评论！记得挂好梯子，随便输个邮箱开匿名评论就行~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OpenGL-%E5%92%8C-DirectX"><span class="toc-number">1.</span> <span class="toc-text">OpenGL 和 DirectX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-OpenGL%EF%BC%88Open-Graphics-Library%EF%BC%89"><span class="toc-number">1.0.1.</span> <span class="toc-text">1. OpenGL（Open Graphics Library）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F"><span class="toc-number">1.0.1.4.</span> <span class="toc-text">应用领域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DirectX"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. DirectX</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0-1"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E7%82%B9-1"><span class="toc-number">1.0.2.2.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="toc-number">1.0.2.3.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E9%A2%86%E5%9F%9F-1"><span class="toc-number">1.0.2.4.</span> <span class="toc-text">应用领域</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenGL-vs-DirectX-%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">1.0.3.</span> <span class="toc-text">OpenGL vs DirectX 的比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.0.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HLSL%E3%80%81GLSL-%E5%92%8CCg"><span class="toc-number">2.</span> <span class="toc-text">HLSL、GLSL 和Cg</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-HLSL-High-Level-Shading-Language"><span class="toc-number">2.0.1.</span> <span class="toc-text">1. HLSL (High-Level Shading Language)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0-2"><span class="toc-number">2.0.1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">2.0.1.2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">2.0.1.3.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%88HLSL%EF%BC%89"><span class="toc-number">2.0.1.4.</span> <span class="toc-text">示例（HLSL）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-GLSL-OpenGL-Shading-Language"><span class="toc-number">2.0.2.</span> <span class="toc-text">2. GLSL (OpenGL Shading Language)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0-3"><span class="toc-number">2.0.2.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E7%82%B9-1"><span class="toc-number">2.0.2.2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-1"><span class="toc-number">2.0.2.3.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%88GLSL%EF%BC%89"><span class="toc-number">2.0.2.4.</span> <span class="toc-text">示例（GLSL）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Cg-C-for-Graphics"><span class="toc-number">2.0.3.</span> <span class="toc-text">3. Cg (C for Graphics)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0-4"><span class="toc-number">2.0.3.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%B9%E7%82%B9-2"><span class="toc-number">2.0.3.2.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-2"><span class="toc-number">2.0.3.3.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%88Cg%EF%BC%89"><span class="toc-number">2.0.3.4.</span> <span class="toc-text">示例（Cg）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%EF%BC%9AHLSL%E3%80%81GLSL%E3%80%81Cg"><span class="toc-number">2.0.4.</span> <span class="toc-text">比较：HLSL、GLSL、Cg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-number">2.0.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Draw-Call"><span class="toc-number">3.</span> <span class="toc-text">Draw Call</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E8%A7%A3%E9%87%8A"><span class="toc-number">3.0.1.</span> <span class="toc-text">详细解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84-Draw-Call-%E6%B5%81%E7%A8%8B"><span class="toc-number">3.0.2.</span> <span class="toc-text">简单的 Draw Call 流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-Draw-Call"><span class="toc-number">3.0.3.</span> <span class="toc-text">如何优化 Draw Call</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Draw-Call-%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.0.4.</span> <span class="toc-text">Draw Call 示例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E7%AE%A1%E7%BA%BF%E6%B8%B2%E6%9F%93"><span class="toc-number">4.</span> <span class="toc-text">固定管线渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E7%AE%A1%E7%BA%BF%E6%B8%B2%E6%9F%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">4.0.1.</span> <span class="toc-text">固定管线渲染的工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E7%AE%A1%E7%BA%BF%E6%B8%B2%E6%9F%93%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">4.0.2.</span> <span class="toc-text">固定管线渲染的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E7%AE%A1%E7%BA%BF%E6%B8%B2%E6%9F%93%E7%9A%84%E5%8E%86%E5%8F%B2%E5%92%8C%E5%8F%91%E5%B1%95"><span class="toc-number">4.0.3.</span> <span class="toc-text">固定管线渲染的历史和发展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E7%AE%A1%E7%BA%BF%E4%B8%8E%E5%8F%AF%E7%BC%96%E7%A8%8B%E7%AE%A1%E7%BA%BF%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">4.0.4.</span> <span class="toc-text">固定管线与可编程管线的比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-2"><span class="toc-number">4.0.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/" title="UnityShader常见术语"><img src="/pictures/mitacrazy.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UnityShader常见术语"/></a><div class="content"><a class="title" href="/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/" title="UnityShader常见术语">UnityShader常见术语</a><time datetime="2025-01-23T05:45:16.000Z" title="发表于 2025-01-23 13:45:16">2025-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" title="Unity Shader入门笔记1"><img src="/pictures/mita0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Unity Shader入门笔记1"/></a><div class="content"><a class="title" href="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" title="Unity Shader入门笔记1">Unity Shader入门笔记1</a><time datetime="2025-01-22T13:04:01.000Z" title="发表于 2025-01-22 21:04:01">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/cs2%E7%82%BC%E7%8B%B1%E5%B0%8F%E9%95%87%E9%81%93%E5%85%B7%E6%95%99%E5%AD%A6/" title="cs2炼狱小镇道具教学"><img src="/pictures/inferno.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="cs2炼狱小镇道具教学"/></a><div class="content"><a class="title" href="/2025/01/22/cs2%E7%82%BC%E7%8B%B1%E5%B0%8F%E9%95%87%E9%81%93%E5%85%B7%E6%95%99%E5%AD%A6/" title="cs2炼狱小镇道具教学">cs2炼狱小镇道具教学</a><time datetime="2025-01-22T08:46:44.000Z" title="发表于 2025-01-22 16:46:44">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/18/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/" title="Csharp学习笔记-2"><img src="/pictures/codingSakura.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Csharp学习笔记-2"/></a><div class="content"><a class="title" href="/2025/01/18/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/" title="Csharp学习笔记-2">Csharp学习笔记-2</a><time datetime="2025-01-18T08:47:32.000Z" title="发表于 2025-01-18 16:47:32">2025-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/17/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/" title="Csharp学习笔记-1"><img src="/pictures/codingSakura.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Csharp学习笔记-1"/></a><div class="content"><a class="title" href="/2025/01/17/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/" title="Csharp学习笔记-1">Csharp学习笔记-1</a><time datetime="2025-01-17T07:30:43.000Z" title="发表于 2025-01-17 15:30:43">2025-01-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By YeagerYuan</div><div class="footer_custom_text">有空就来看看吧，我的朋友</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://yeageryuan.cc/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/'
+    this.page.identifier = '/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/'
+    this.page.title = 'UnityShader常见术语'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://yeageryuan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="你也在,寻找,所谓的,自由吗" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
