@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>用AssetStudio获取Steam上Unity游戏资产</title>
+      <link href="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/"/>
+      <url>/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>首先下载AssetStudio，Github网址： <a href="https://github.com/Perfare/AssetStudio/releases">Releases · Perfare&#x2F;AssetStudio</a> </p><p>我下载的是第二个，第一个不知道为啥没找到exe文件，也可以自己下了都试试。</p><p><img src="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/1737818347604.png" alt="1737818347604"></p><p>下载后解压，点击运行程序。</p><p><img src="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/1737818451546.png" alt="1737818451546"></p><p>打开steam，找到想要解包的游戏地址，复制（只能是Unity开发的游戏，有些游戏可能有保护也无法解包）。</p><p><img src="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/1737818607362.png" alt="1737818607362"></p><p>选择file-&gt;load folder.</p><p><img src="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/1737818663186.png" alt="1737818663186"></p><p>粘贴地址即可。</p><p><img src="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/1737818701130.png" alt="1737818701130"></p><p>解包过程比较长，会一直出现报错，点击确定即可。但是不点击的话似乎就不会继续解包下去。</p><p><img src="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/1737797842210.png" alt="1737797842210"></p><p>解包完成后，点击Asset List查看解包文件，Mesh的是模型文件，还有其它种类的资产都会在里面。</p><p><img src="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/1737802334773.png" alt="1737802334773"></p><p>点击Export可以导出全部资产到本地，或者指定资产导出。</p><p><img src="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/1737802295833.png" alt="1737802295833"></p><p>全部导出时间比较长，中间没有确定，挂机等待即可。</p><p><img src="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/1737818232014.png" alt="1737818232014"></p><p>导出目录如下(以米塔为例，xml文件是另外导出的资产目录)：</p><p><img src="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/1737818930610.png" alt="1737818930610"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> unity </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Unity-Shader入门笔记2</title>
       <link href="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/"/>
       <url>/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/</url>
