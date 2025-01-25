@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Unity-Shader入门笔记2 | YEAGER在海的那边的小木屋</title><meta name="author" content="YeagerYuan"><meta name="copyright" content="YeagerYuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Shader 是什么Shader的中文意思是 着色器是一种用于描述如何渲染图形和计算图形外观的程序主要用于控制图形的颜色、光照、纹理和其他视觉效果。 着色器通常由着色器语言编写，这些着色器语言提供了指令和语法用于编写描述光照、纹理映射、阴影、反射等图形外观的代码。 Shader就是着色器，是用于编写图形表现效果的程序代码。 为了和前面通用的Shader 语义进行区分，我们把Unity 中的Shad">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity-Shader入门笔记2">
+<meta property="og:url" content="http://yeageryuan.cc/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/index.html">
+<meta property="og:site_name" content="YEAGER在海的那边的小木屋">
+<meta property="og:description" content="Shader 是什么Shader的中文意思是 着色器是一种用于描述如何渲染图形和计算图形外观的程序主要用于控制图形的颜色、光照、纹理和其他视觉效果。 着色器通常由着色器语言编写，这些着色器语言提供了指令和语法用于编写描述光照、纹理映射、阴影、反射等图形外观的代码。 Shader就是着色器，是用于编写图形表现效果的程序代码。 为了和前面通用的Shader 语义进行区分，我们把Unity 中的Shad">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yeageryuan.cc/pictures/mita0.png">
+<meta property="article:published_time" content="2025-01-24T10:38:38.000Z">
+<meta property="article:modified_time" content="2025-01-25T05:54:19.026Z">
+<meta property="article:author" content="YeagerYuan">
+<meta property="article:tag" content="unity">
+<meta property="article:tag" content="shader">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yeageryuan.cc/pictures/mita0.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yeageryuan.cc/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Unity-Shader入门笔记2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-25 13:54:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/beauty.css"><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa fa-commenting"></i><span> 研记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 灵感</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 好图</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 柔耳</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 醒目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 安利</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 悄悄话</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/pictures/mita0.png')"><nav id="nav"><span id="blog-info"><a href="/" title="YEAGER在海的那边的小木屋"><span class="site-name">YEAGER在海的那边的小木屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa fa-commenting"></i><span> 研记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 灵感</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 好图</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 柔耳</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 醒目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 安利</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 悄悄话</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Unity-Shader入门笔记2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-24T10:38:38.000Z" title="发表于 2025-01-24 18:38:38">2025-01-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-25T05:54:19.026Z" title="更新于 2025-01-25 13:54:19">2025-01-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Unity-Shader入门笔记2"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Shader-是什么"><a href="#Shader-是什么" class="headerlink" title="Shader 是什么"></a>Shader 是什么</h1><p>Shader的中文意思是 着色器是一种用于描述如何渲染图形和计算图形外观的程序主要用于控制图形的颜色、光照、纹理和其他视觉效果。</p>
+<p>着色器通常由着色器语言编写，这些着色器语言提供了指令和语法用于编写描述光照、纹理映射、阴影、反射等图形外观的代码。</p>
+<p><strong>Shader就是着色器，是用于编写图形表现效果的程序代码。</strong></p>
+<p>为了和前面通用的Shader 语义进行区分，我们把Unity 中的Shader文件统称为<strong>Unity Shader</strong>。这是因为，Unity Shader和我们之前提及的渲染管线的Shader有很大不同。</p>
+<h1 id="Shader-和渲染管线的关系"><a href="#Shader-和渲染管线的关系" class="headerlink" title="Shader 和渲染管线的关系"></a>Shader 和渲染管线的关系</h1><p>Shader和渲染管线的关系是密不可分的，渲染管线(流水线)的基本概念是将数据分阶段的变为屏幕图像的过程<br>而Shader开发就是针对其中<strong>某些阶段的自定义开发</strong>从而<strong>决定</strong>图形图像最终呈现到屏幕上的表现效果。</p>
+<p>主要针对的是几何阶段中的<strong>顶点着色器</strong>小阶段和光栅化阶段中的<strong>片元着色器</strong>小阶段。</p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737731392848.png" alt="1737731392848"></p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737731427662.png" alt="1737731427662"></p>
+<h2 id="如何学习Shader开发"><a href="#如何学习Shader开发" class="headerlink" title="如何学习Shader开发"></a>如何学习Shader开发</h2><p>学习Shader开发，我们必须要学习的基本知识有：<br>        1.数学相关知识<br>        2.语法相关知识<br>        3.着色器开发相关知识</p>
+<p>在Unity Shader开发过程中，我们需要学习Unity中的<strong>ShaderLab</strong>语法和着色开发的<strong>CG</strong>语言。在Unity中，所有的Unity Shader 都是使用 ShaderLab来编写的。ShaderLab是Unity 提供的编写Unity Shader的一种说明性语言。它使用了一些嵌套在花括号内部的**语义(syntax)**来描述一个Unity Shader 文件的结构。这些结构包含了许多渲染所需的数据，例如Properties 语句块中定义了着色器所需的各种属性，这些属性将会出现在材质面板中。</p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737731996254.png" alt="1737731996254"></p>
+<h1 id="Material"><a href="#Material" class="headerlink" title="Material"></a>Material</h1><p>在Unity 中我们需要配合使用材质(Material)和Unity Shader才能达到需要的效果。一个最常见的流程是： </p>
+<p>(1)创建一个材质； </p>
+<p>(2)创建一个Unity Shader,并把它赋给上一步中创建的材质： </p>
+<p>(3)把材质赋给要渲染的对象； </p>
+<p>(4)在材质面板中调整Unity Shader的属性，以得到满意的效果。</p>
+<p>下面是Unity Shader的导入设置面板。</p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737732586808.png" alt="1737732586808"></p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737780661854.png" alt="1737780661854"></p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737780867047.png" alt="1737780867047"></p>
+<h1 id="Shader示例"><a href="#Shader示例" class="headerlink" title="Shader示例"></a>Shader示例</h1><p>下面是一个 <strong>ShaderLab</strong> 编写的自定义Shader 。</p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737780837136.png" alt="1737780837136"></p>
+<p>下面是一般形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Shader&quot;ShaderName&quot;&#123;</span><br><span class="line">	Properties</span><br><span class="line">	&#123;</span><br><span class="line">	// 属性</span><br><span class="line">	&#125;</span><br><span class="line">	SubShader &#123;</span><br><span class="line">// 显卡A使用的子着色器</span><br><span class="line">	&#125;</span><br><span class="line">	SubShader &#123;</span><br><span class="line">// 显卡B使用的子着色器</span><br><span class="line">	&#125;</span><br><span class="line">Fallback &quot;Diffuse&quot;</span><br><span class="line">//Fallback 是一个用于指定当某个Shader无法使用时，自动回退到其他Shader的机制。它通常用于确保在不支持某些高级图形特性的设备上，仍然能够渲染对象而不会导致错误或崩溃。</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Unity 在背后会根据使用的平台来把这些结构编译成<strong>真正的代码和 Shader 文件</strong>，而开发者只需要和Unity Shader打交道即可。</p>
+<h2 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h2><p>材质和 Unity Shader的桥梁：Properties。</p>
+<p>Properties语义块中包含了一系列属性(property)，这些属性将会出现在材质面板中，斜杠来组织在材质面板中的位置 。</p>
+<p>Properties 语义块的定义通常如下： </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Properties&#123;</span><br><span class="line"></span><br><span class="line">Name(&quot;display name&quot;,PropertyType)= DefaultValue </span><br><span class="line"></span><br><span class="line">Name(&quot;display name&quot;,PropertyType)- DefaultValue </span><br><span class="line"></span><br><span class="line">// 更多属性 </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>开发者们声明这些属性是为了在材质面板中能够方便地调整各种材质属性。如果我们需要在Shader 中访问它们，就需要使用每个属性的名字(Name)。在Unity 中，这些属性的名字通常由一个下划线开始。显示的名称(display name)则是出现在材质面板上的名字。我们需要为每个属性指定它的类型(PropertyType)。除此之外，我们还需要为每 个属性指定一个默认值，在我们第一次把该Unity Shader 赋给某个材质时，材质面板上显示的就是这些默认值。</p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737781808834.png" alt="1737781808834"></p>
+<h2 id="SubShader"><a href="#SubShader" class="headerlink" title="SubShader"></a>SubShader</h2><p>每一个Unity Shader文件可以包含多个SubShader语义块，但最少要有一个。当Unity 需要加载这个Unity Shader时，Unity会扫描所有的SubShader语义块，然后选择第一个能够在目标平台运行的SubShader。如果都不支持的话，Unity 就会使用Fallback语义指定的Unity Shader。Unity 提供这种语义的原因在于，不同的显卡具有不同的能力。例如，一些旧的显卡仅能支 持一定数目的操作指令，而一些更高级的显卡可以支持更多的指令数，那么我们希望在旧的显卡 上使用计算复杂度较低的着色器，而在高级的显卡上使用计算复杂度较高的着色器，以便提供更出色的画面。</p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737781848687.png" alt="1737781848687"></p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737781918447.png" alt="1737781918447"></p>
+<p>上述标签仅可以在SubShader中声明，而不可以在Pass块中声明。Pass块虽然也可以定义标签，但这些标签是不同于SubShader的标签类型。</p>
+<p>Pass 语义块包含的语义如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Pass &#123;</span><br><span class="line">[Name]</span><br><span class="line">[Tags]</span><br><span class="line">[RenderSetup]</span><br><span class="line">// Other code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Pass同样可以设置标签，但它的标签不同于SubShader的标签。这些标签也是用于告诉渲染引擎我们希望怎样来渲染该物体。</p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737782439567.png" alt="1737782439567"></p>
+<h2 id="Fallback"><a href="#Fallback" class="headerlink" title="Fallback"></a>Fallback</h2><p>紧跟在各个SubShader语义块后面的，可以是一个Fallback 指令。它用于告诉Unity，“如果上面所有的SubShader在这块显卡上都不能运行，那么就使用这个最低级的Shader吧!”</p>
+<p>Fallback 是一个用于指定当某个Shader无法使用时，自动回退到其他Shader的机制。它通常用于确保在不支持某些高级图形特性的设备上，仍然能够渲染对象而不会导致错误或崩溃。</p>
+<h1 id="Unity-Shader-的形式"><a href="#Unity-Shader-的形式" class="headerlink" title="Unity Shader 的形式"></a>Unity Shader 的形式</h1><p>最重要的任务还是指定各种着色器所需的代码。这些着色器代码可以写在SubShader语义块中(表面着色器的做法),也可以写在Pass 语义块中(顶 点&#x2F;片元着色器和固定函数着色器的做法)。</p>
+<h2 id="表面着色器"><a href="#表面着色器" class="headerlink" title="表面着色器"></a>表面着色器</h2><p>表面着色器(Surface Shader)是Unity自己创造的一种着色器代码类型。它需要的代码量很少，Unity 在背后做了很多工作，但渲染的代价比较大。它在本质上和下面要讲到的顶点&#x2F;片元着色器是一样的。当给 Unity 提供一个表面着色器的时候，它在背后仍旧把它转换成对应的顶点&#x2F;片元着色器。</p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737784331576.png" alt="1737784331576"></p>
+<p>GPROGRAM和ENDCG之间的代码是使用CG&#x2F;HLSL 编写的，也就是说，我们需要把CG&#x2F;HLSL语言嵌套在 ShaderLab语言中。值得注意的是，这里的CG&#x2F;HLSL是Unity 经封装后提供的，它的语法和标准的CG&#x2F;HLSL 语法几乎一样，但还是有细微的不同，例如有些原生的函数 和用法Unity并没有提供支持。</p>
+<h2 id="顶点-片元着色器"><a href="#顶点-片元着色器" class="headerlink" title="顶点&#x2F;片元着色器"></a>顶点&#x2F;片元着色器</h2><p>在Unity中我们可以使用CG&#x2F;HLSL语言来编写顶点&#x2F;片元着色器(Vertex&#x2F;Fragment Shader)。它们更加复杂，但灵活性也更高。一个非常简单的顶点&#x2F;片元着色器示例代码如下：</p>
+<p><img src="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/1737784414078.png" alt="1737784414078"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yeageryuan.cc">YeagerYuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yeageryuan.cc/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/">http://yeageryuan.cc/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yeageryuan.cc" target="_blank">YEAGER在海的那边的小木屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/unity/">unity</a><a class="post-meta__tags" href="/tags/shader/">shader</a></div><div class="post_share"><div class="social-share" data-image="/pictures/mita0.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/" title="UnityShader常见术语"><img class="cover" src="/pictures/mitacrazy.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UnityShader常见术语</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/" title="UnityShader常见术语"><img class="cover" src="/pictures/mitacrazy.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-23</div><div class="title">UnityShader常见术语</div></div></a></div><div><a href="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" title="Unity Shader入门笔记1"><img class="cover" src="/pictures/mita0.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-22</div><div class="title">Unity Shader入门笔记1</div></div></a></div><div><a href="/2024/04/28/UnityVR%E6%89%8B%E9%83%A8%E5%8A%A8%E7%94%BB/" title="UnityVR手部动画"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-28</div><div class="title">UnityVR手部动画</div></div></a></div><div><a href="/2024/04/28/Unity%E4%B8%ADHDRP%E4%B8%8B%E7%9A%84%E6%B0%B4%E7%B3%BB%E7%BB%9F/" title="Unity中HDRP下的水系统"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-28</div><div class="title">Unity中HDRP下的水系统</div></div></a></div><div><a href="/2023/12/03/Unity%E4%B8%AD%E7%9A%84%E5%9B%9B%E5%85%83%E6%95%B0/" title="Unity中的四元数"><img class="cover" src="/pictures/siyuanshu.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-12-03</div><div class="title">Unity中的四元数</div></div></a></div><div><a href="/2023/11/04/Unity%E4%B8%AD%E7%9A%84Mathf-Lerp%E5%AE%9E%E7%8E%B0%E5%85%88%E5%BF%AB%E5%90%8E%E6%85%A2%E6%8E%A5%E8%BF%91%E4%B8%8E%E5%8C%80%E9%80%9F%E6%8E%A5%E8%BF%91/" title="Unity中的Mathf.Lerp实现先快后慢接近与匀速接近"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-04</div><div class="title">Unity中的Mathf.Lerp实现先快后慢接近与匀速接近</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-calendar"><div class="card-content"><div class="item-headline"><i class="far fa-calendar-alt" aria-hidden="true"></i><span>考研倒计时</span></div><div class="widget-wrap"></div><div class="widget" id="calendar"></div></div></div><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">YeagerYuan</div><div class="author-info__description">要进来听听世界上最不自由的人讲述最自由的故事吗？</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">74</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/YeagerYuan"><i class="fab fa-github"></i><span>再多按一次就会爆炸</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎在评论区评论！记得挂好梯子，随便输个邮箱开匿名评论就行~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Shader-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">Shader 是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shader-%E5%92%8C%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">2.</span> <span class="toc-text">Shader 和渲染管线的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0Shader%E5%BC%80%E5%8F%91"><span class="toc-number">2.1.</span> <span class="toc-text">如何学习Shader开发</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Material"><span class="toc-number">3.</span> <span class="toc-text">Material</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shader%E7%A4%BA%E4%BE%8B"><span class="toc-number">4.</span> <span class="toc-text">Shader示例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Properties"><span class="toc-number">4.1.</span> <span class="toc-text">Properties</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SubShader"><span class="toc-number">4.2.</span> <span class="toc-text">SubShader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fallback"><span class="toc-number">4.3.</span> <span class="toc-text">Fallback</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Unity-Shader-%E7%9A%84%E5%BD%A2%E5%BC%8F"><span class="toc-number">5.</span> <span class="toc-text">Unity Shader 的形式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E9%9D%A2%E7%9D%80%E8%89%B2%E5%99%A8"><span class="toc-number">5.1.</span> <span class="toc-text">表面着色器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B6%E7%82%B9-%E7%89%87%E5%85%83%E7%9D%80%E8%89%B2%E5%99%A8"><span class="toc-number">5.2.</span> <span class="toc-text">顶点&#x2F;片元着色器</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/" title="Unity-Shader入门笔记2"><img src="/pictures/mita0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Unity-Shader入门笔记2"/></a><div class="content"><a class="title" href="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/" title="Unity-Shader入门笔记2">Unity-Shader入门笔记2</a><time datetime="2025-01-24T10:38:38.000Z" title="发表于 2025-01-24 18:38:38">2025-01-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/" title="UnityShader常见术语"><img src="/pictures/mitacrazy.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="UnityShader常见术语"/></a><div class="content"><a class="title" href="/2025/01/23/UnityShader%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/" title="UnityShader常见术语">UnityShader常见术语</a><time datetime="2025-01-23T05:45:16.000Z" title="发表于 2025-01-23 13:45:16">2025-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" title="Unity Shader入门笔记1"><img src="/pictures/mita0.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Unity Shader入门笔记1"/></a><div class="content"><a class="title" href="/2025/01/22/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B01/" title="Unity Shader入门笔记1">Unity Shader入门笔记1</a><time datetime="2025-01-22T13:04:01.000Z" title="发表于 2025-01-22 21:04:01">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/cs2%E7%82%BC%E7%8B%B1%E5%B0%8F%E9%95%87%E9%81%93%E5%85%B7%E6%95%99%E5%AD%A6/" title="cs2炼狱小镇道具教学"><img src="/pictures/inferno.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="cs2炼狱小镇道具教学"/></a><div class="content"><a class="title" href="/2025/01/22/cs2%E7%82%BC%E7%8B%B1%E5%B0%8F%E9%95%87%E9%81%93%E5%85%B7%E6%95%99%E5%AD%A6/" title="cs2炼狱小镇道具教学">cs2炼狱小镇道具教学</a><time datetime="2025-01-22T08:46:44.000Z" title="发表于 2025-01-22 16:46:44">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/18/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/" title="Csharp学习笔记-2"><img src="/pictures/codingSakura.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Csharp学习笔记-2"/></a><div class="content"><a class="title" href="/2025/01/18/Csharp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/" title="Csharp学习笔记-2">Csharp学习笔记-2</a><time datetime="2025-01-18T08:47:32.000Z" title="发表于 2025-01-18 16:47:32">2025-01-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By YeagerYuan</div><div class="footer_custom_text">有空就来看看吧，我的朋友</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://yeageryuan.cc/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/'
+    this.page.identifier = '/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/'
+    this.page.title = 'Unity-Shader入门笔记2'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://yeageryuan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="你也在,寻找,所谓的,自由吗" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
