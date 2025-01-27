@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>Unity-Shader入门笔记3</title>
+      <link href="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/"/>
+      <url>/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_00(1).png" alt="Unity Shader_00(1)"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_01.png" alt="Unity Shader_01"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_02.png" alt="Unity Shader_02"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_03.png" alt="Unity Shader_03"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_04.png" alt="Unity Shader_04"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_05.png" alt="Unity Shader_05"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_06.png" alt="Unity Shader_06"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_07.png" alt="Unity Shader_07"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_08.png" alt="Unity Shader_08"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_09.png" alt="Unity Shader_09"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_10.png" alt="Unity Shader_10"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_11.png" alt="Unity Shader_11"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_12.png" alt="Unity Shader_12"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_13.png" alt="Unity Shader_13"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_14.png" alt="Unity Shader_14"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_15.png" alt="Unity Shader_15"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_16.png" alt="Unity Shader_16"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_17.png" alt="Unity Shader_17"></p><p><img src="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/Unity%20Shader_18.png" alt="Unity Shader_18"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> unity </tag>
+            
+            <tag> shader </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>用AssetStudio获取Steam上Unity游戏资产</title>
       <link href="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/"/>
       <url>/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/</url>
