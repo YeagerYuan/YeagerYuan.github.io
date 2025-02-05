@@ -3,7 +3,6 @@ title: Unity-Shader入门笔记4
 date: 2025-02-05 10:51:29
 tags: [unity,shader]
 cover: pictures/mita01.png
-​---
 ---
 
 # 顶点、片元着色器
