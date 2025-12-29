@@ -1,64 +1,385 @@
+/* ==================================
+   P5R 风格核心样式重写 for Butterfly
+   ================================== */
 
-  /* 页脚footer */
-/* 渐变色滚动动画 */
-@-webkit-keyframes Gradient {
-    0% {
-        background-position: 0 50%;
-    }
- 
-    50% {
-        background-position: 100% 50%;
-    }
- 
-    100% {
-        background-position: 0 50%;
-    }
+/* 1. 引入 P5 风格字体 (你需要下载字体文件放入 source/font 目录) */
+@font-face {
+  font-family: 'P5Font';
+  /* 这是一个示例，你需要找类似 SlumpDB.ttf 的字体 */
+  src: url('/font/方正剪纸简体.ttf'); 
 }
- 
-@-moz-keyframes Gradient {
-    0% {
-        background-position: 0 50%;
-    }
- 
-    50% {
-        background-position: 100% 50%;
-    }
- 
-    100% {
-        background-position: 0 50%;
-    }
+
+
+
+/* ==================================
+   修复版：侧边栏 (Aside) - 解决偏移和遮挡问题
+   ================================== */
+
+/* 1. 修正容器：保持容器端正，不要倾斜整个侧边栏 */
+#aside-content {
+  transform: none !important; /* 强制取消容器的倾斜 */
+  padding-right: 15px; /* 给右边留出空隙，防止卡片旋转后碰到文章 */
+  padding-left: 10px;  /* 给左边留空隙，防止飘出屏幕 */
+  position: relative;
+  z-index: 1; /* 降低层级，确保不会盖在文章标题上面 */
 }
- 
-@keyframes Gradient {
-    0% {
-        background-position: 0 50%;
-    }
- 
-    50% {
-        background-position: 100% 50%;
-    }
- 
-    100% {
-        background-position: 0 50%;
-    }
+
+/* 2. 卡片样式：只让卡片自己倾斜/旋转 */
+#aside-content .card-widget {
+  background: #000;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 0;
+  
+  /* 关键修改：减小旋转角度，增加外边距来作为缓冲 */
+  transform: skewX(-3deg) rotate(-1deg); 
+  margin-bottom: 30px; /* 增加卡片间距 */
+  margin-left: 5px;    /* 微调位置 */
+  margin-right: 5px;   /* 微调位置 */
+  
+  box-shadow: 6px 6px 0px rgba(168, 8, 200, 0.8); /* */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  /* 确保内容不会溢出卡片 */
+  overflow: visible; 
 }
+
+/* 3. 鼠标悬停效果 - 稍微放大并摆正 */
+#aside-content .card-widget:hover {
+  transform: scale(1.02) skewX(0deg) rotate(0deg) !important; /* 悬停时摆正，看得更清楚 */
+  background: #fff;
+  color: #000;
+  border-color: #000;
+  box-shadow: -4px 4px 0px #ff0055; /* 撞色红 */
+  z-index: 2; /* 悬停时浮起 */
+}
+
+/* 4. 侧边栏内部元素的细节调整 */
+#aside-content .item-headline {
+  font-size: 1.4em;
+  font-weight: 900;
+  border-bottom: 3px solid #fff; /* 改为实线更硬朗 */
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+/* 链接文字颜色 */
+#aside-content .card-widget a {
+  color: #fff !important;
+  font-weight: bold;
+  text-decoration: none;
+}
+#aside-content .card-widget:hover a {
+  color: #000 !important;
+}
+
+/* 5. 修复：防止 sticky 模式下侧边栏乱跑 */
+/* 如果你开启了侧边栏固定，这行代码能防止它计算错误 */
+.sticky_layout { 
+    transform: none !important; 
+}
+
+/* 4. 主内容区域 (Layout) */
+/* 文章容器背景 */
+#recent-posts > .recent-post-item,
+.layout > .recent-post-item,
+.layout > .post-content,
+.layout > div.post {
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid #000;
+  border-radius: 0;
+  transform: skewX(-2deg); /* 内容区也稍微倾斜 */
+  box-shadow: 8px 8px 0px #000; /* 黑色硬阴影 */
+  clip-path: polygon(2% 0%, 100% 0%, 100% 98%, 98% 100%, 0% 100%);
+}
+
+/* ==================================
+   侧边栏标签 (Tags) P5 风格悬停特效
+================================== */
+
+/* 1. 基础样式调整：给标签一点空间，方便它“变身” */
+.card-tag-cloud a {
+    display: inline-block !important; /* 必须是块级或行内块才能变形 */
+    padding: 3px 8px !important;      /* 增加内边距，让它看起来像个标签 */
+    margin: 3px !important;           /* 增加外边距，防止变大后撞车 */
+    border-radius: 0 !important;      /* P5 禁止圆角 */
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important; /* 弹性过渡 */
+}
+
+/* 2. 鼠标悬停 (Hover) -> 变身黑色歪斜贴纸 */
+.card-tag-cloud a:hover {
+    /* --- 核心配色：黑底白字 (经典 P5) --- */
+    background-color: #e30f0f !important;
+    color: #fff !important;
+    
+    /* --- 视觉冲击：紫色硬阴影 (呼应你的主色调) --- */
+    /* 如果想要红色阴影（Joker风格），把 #7e57c2 改成 #d50000 */
+    box-shadow: 4px 4px 0px #7e57c2 !important;
+    
+    /* --- 动感形态：强烈歪斜 + 放大 --- */
+    transform: skewX(-10deg) scale(1.15) !important;
+    
+    /* --- 细节修正 --- */
+    text-decoration: none !important; /* 去掉下划线 */
+}
+
+/* 3. 字体大小微调 (可选) */
+/* 如果觉得标签字太小，不够有冲击力，可以解开下面这行 */
+/* .card-tag-cloud a { font-size: 1.1em !important; } */
+
+/* 文章标题 - 模仿 Ransom Note (剪报) 效果 */
+/* 针对首页文章卡片标题 (h1.post-title) 和 文章内页大标题 (.article-title) */
+h1.post-title,
+.article-title {
+  display: inline-block; /* 让标题块状化，以便应用变形和边框 */
+  
+  /* 核心样式：黑底白字 */
+  color: #fff !important;       /* 强制白色字体 */
+  background-color: #000;       /* 黑色背景盒子 */
+  
+  /* 字体样式调整 */
+  font-weight: 900;             /* 字体加粗，更有冲击力 */
+  padding: 8px 20px;            /* 增加内边距，让文字不那么拥挤 */
+  font-size: 1.6em;             /* 稍微调整字体大小 */
+  
+  /* P5 标志性的倾斜和旋转 */
+  transform: skewX(-5deg) rotate(-1deg);
+  
+  /* 关键：利用多重 box-shadow 模拟多层粗边框 */
+  /* box-shadow 的解析顺序是：水平偏移, 垂直偏移, 模糊半径, 扩展半径, 颜色 */
+  /* 我们这里都不设置偏移和模糊，只利用扩展半径来制造“边框” */
+  box-shadow: 
+    0 0 0 4px #a200ff,  /* 第一层（内层）：紫色框，宽度 4px */
+    0 0 0 10px #000,    /* 第二层（外层）：更粗的黑色框，宽度 10px (会覆盖在紫色外面) */
+    8px 8px 0px rgba(162, 0, 255, 0.3); /* (可选) 第三层：右下角的硬阴影，增加立体感 */
+    
+  /* 布局调整 */
+  margin: 20px 5px; /* 因为边框很粗，需要增加外边距防止重叠 */
+  border-radius: 0 !important; /* 确保是尖角 */
+}
+
+/* 鼠标悬停时的互动效果 (可选) */
+h1.post-title:hover,
+.article-title:hover {
+    /* 悬停时稍微改变一下颜色或错位感 */
+    background-color: #a200ff;
+    color: #000 !important;
+    box-shadow: 
+      0 0 0 4px #000,
+      0 0 0 10px #a200ff,
+      -5px 5px 0px rgba(0,0,0, 0.8);
+    transform: skewX(-5deg) rotate(1deg) scale(1.02);
+    transition: all 0.2s ease-in-out;
+}
+
+/* 修复首页标题链接的颜色问题 */
+#recent-posts > .recent-post-item > .recent-post-info > .article-title .post-title-link {
+    color: #fff !important;
+    text-decoration: none;
+}
+
+/* 5. 导航栏 (Nav) - 隐藏默认背景，做成浮动文字 */
+#nav {
+  background: transparent !important;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+#nav a {
+  color: #fff;
+  text-shadow: 2px 2px 0 #000; /* 文字描边 */
+  font-weight: 900;
+  font-size: 1.2em;
+  background: #000;
+  padding: 2px 8px;
+  margin: 0 5px;
+  transform: skewX(-10deg);
+}
+
+#nav a:hover {
+  background: #00ffff; /* Miku 青色 */
+  color: #000;
+}
+
+/* 6. 分页器 (Pagination) */
+#pagination {
+  background: #000;
+  padding: 10px;
+  transform: rotate(2deg);
+}
+#pagination .page-number.current {
+  background: #ff0055;
+  color: #fff;
+}
+
+/* 7. 隐藏不需要的元素以保持画面干净 */
+#page-header.full_page {
+    background-attachment: fixed; /* 保持背景图不动 */
+}
+
+/* ==================================
+   首页大标题替换为图片
+================================== */
+/* ==================================
+   首页大标题替换为图片 (整合交互特效版)
+================================== */
+
+#site-info #site-title, 
+#site-info #site_title {
+    /* --- 1. 基础设置 (隐藏文字 + 显示图片) --- */
+    font-size: 0 !important;
+    color: transparent !important;
+    text-shadow: none !important;
+    
+    background-image: url('/img/my_title.png') !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important; 
+    
+    /* --- 2. 尺寸与定位 (保留你修改后的数值) --- */
+    display: block !important;
+    margin: 0 auto !important; 
+    width: 1200px !important;    
+    height: 300px !important;   
+    max-width: 90% !important;
+
+    /* --- 3. 初始位置 & 动画基础 --- */
+    /* 默认位置：向上偏移 50px */
+    transform: translateY(-50px) !important; 
+    
+    /* 鼠标变手型，提示可点击 */
+    cursor: pointer !important;
+    
+    /* 弹性过渡动画：设置贝塞尔曲线，让动作有Q弹果冻感 */
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+/* --- 4. 鼠标悬停 (Hover) -> 上浮 + 放大 --- */
+#site-info #site-title:hover, 
+#site-info #site_title:hover {
+    /* 计算逻辑：
+       原位置是 -50px
+       悬停想上浮 15px -> 变成 -65px
+       scale(1.05) -> 放大 5% 
+    */
+    transform: translateY(-65px) scale(1.05) !important;
+}
+
+/* --- 5. 鼠标点击 (Active) -> 下沉 + 缩小 --- */
+#site-info #site-title:active, 
+#site-info #site_title:active {
+    /* 计算逻辑：
+       原位置是 -50px
+       点击想下沉 5px -> 变成 -45px
+       scale(0.95) -> 缩小 5% 产生按压感
+    */
+    transform: translateY(-45px) scale(0.95) !important;
+    
+    /* 点击时反应要快，不需要回弹 */
+    transition: transform 0.1s ease-out !important;
+}
+
+/* --- 6. 防止左上角被意外影响 (保持不变) --- */
+#nav .site-name, 
+#nav #site-title {
+    background: none !important;
+    color: #fff !important; 
+    font-size: 1.2rem !important; 
+    width: auto !important;
+    height: auto !important;
+    text-shadow: none !important;
+    display: inline-block !important;
+    transform: none !important; /* 确保左上角不跟着乱动 */
+}
+
+/* ==================================
+   在标题背后增加人物立绘图层
+================================== */
+
+/* 1. 首先确保父容器允许我们塞入新图层 */
+#site-info {
+    position: relative !important;
+    z-index: 10 !important; /* 确保整个信息栏在最上层 */
+    /* 如果觉得人物挡住了点击，可以把下面这行解开，但这会导致无法右键保存人物图 */
+    /* pointer-events: none; */ 
+}
+
+/* 2. 创建立绘图层 (使用伪元素) */
+#site-info::before {
+    content: '' !important; /* 必须有这个，否则不显示 */
+    
+    /* --- 图片设置 --- */
+    /* 请修改这里的文件名 */
+    background-image: url('/img/character.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: contain !important; /* 保持图片完整显示 */
+    
+    /* --- 定位与尺寸 --- */
+    position: absolute !important;
+    
+    /* 默认居中放在标题后面 */
+    top: 13% !important;
+    left: 50% !important;
+    /* 通过位移微调位置，如果不准，改这里 */
+    /* translate(-50%, -50%) 是绝对居中 */
+    /* 如果想往右挪一点，改第一个 -50% 为 -40% */
+    /* 如果想往下挪一点，改第二个 -50% 为 -40% */
+    transform: translate(-50%, -55%) !important; 
+    
+    /* --- 大小控制 --- */
+    /* 你需要把这个设得比标题大，不然被标题挡完了 */
+    width: 1800px !important;  
+    height: 1000px !important; 
+    
+    /* --- 核心：层级控制 --- */
+    /* 设为 -1，让它沉到 #site-info 内容（也就是你的标题图片）的下面 */
+    z-index: -1 !important; 
+    
+    /* --- 可选：透明度 --- */
+    /* 如果立绘太抢眼，影响看标题，可以把透明度调低 */
+    /* opacity: 0.8 !important; */
+}
+
+/* ==================================
+   页脚 (Footer) P5 风格配色
+================================== */
+
 #footer {
-    /*background: linear-gradient(-45deg, #059fe6, #0c77ce, #2b9ce7, #3ac4ee);*/
-    background: linear-gradient(-45deg, #7a02d6, #983ce8, #df92f3, #ebdaf4);
-    background-size: 400% 400%;
-    -webkit-animation: Gradient 10s ease infinite;
-    -moz-animation: Gradient 10s ease infinite;
-    animation: Gradient 10s ease infinite;
-    -o-user-select: none;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-#footer:before {
-    background-color: rgba(0, 0, 0, 0);
+    /* 1. 背景改为纯黑，压住页面底部 */
+    background: #000 !important;
+    
+    /* 2. 顶部加一条粗紫色边框，作为分割线 */
+    border-top: 4px solid #7e57c2 !important;
+    
+    /* 3. 稍微增加内边距，让排版舒服点 */
+    padding: 30px 20px !important;
+    
+    /* 4. 强制所有文字变成白色 */
+    color: #ffffff !important;
 }
 
+/* 针对页脚里的版权信息、运行时间等文字 */
+#footer .copyright, 
+#footer .framework-info,
+#footer .footer-separator {
+    color: #ffffff !important;
+}
 
+/* --- 页脚链接 (Links) 的交互 --- */
+#footer a {
+    /* 默认显示浅紫色，方便区分 */
+    color: #b388ff !important; 
+    transition: all 0.2s;
+}
+
+/* 鼠标悬停在链接上时 */
+#footer a:hover {
+    /* 变身：紫底白字 */
+    background-color: #7e57c2 !important;
+    color: #fff !important;
+    
+    /* 像贴纸一样包个边 */
+    padding: 0 5px; 
+    text-decoration: none !important;
+}

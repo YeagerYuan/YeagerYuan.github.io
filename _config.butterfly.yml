@@ -5,7 +5,7 @@
 nav:
   logo: # image
   display_title: true
-  fixed: false # fixed navigation bar
+  fixed: true # fixed navigation bar
 
 # Menu 目錄
 menu:
@@ -56,10 +56,10 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: /img/mitasss.png
+index_img: /img/p5_purple_bg.png
 
 # If the banner of page not setting, it will show the top_img
-default_top_img: /img/mitasss.png
+default_top_img: /img/p5_purple_bg.png
 
 # The banner image of archive page
 archive_img: /img/archive.JPG
@@ -233,8 +233,7 @@ aside:
     tag: true
     category: true
   card_author:
-    enable: true
-    description:
+    enable: false
     button:
       enable: true
       icon: fab fa-github
@@ -653,7 +652,7 @@ tag_ui: # 留空或 index
 # Website Background (設置網站背景)
 # can set it to color or image (可設置圖片 或者 顔色)
 # The formal of image: url(http://xxxxxx.com/xxx.jpg)
-background: /img/wooden.jpg
+background: /img/p5_purple_bg.png
 
 # Footer Background
 footer_bg: false

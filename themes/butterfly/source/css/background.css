@@ -1,39 +1,190 @@
-/* 文章页背景 */
-.layout_post>#post {
-  /* 以下代表白色透明度为0.3 */
-  background: rgba(92, 170, 170, 0.3);
+/* 针对 Butterfly 主题首页文章卡片的 P5 风格修改 */
+#recent-posts > .recent-post-item {
+    /* 1. 强制大黑边 */
+    border: 3px solid #000 !important;
+    
+    /* 2. P5 风格硬阴影 (不模糊) */
+    box-shadow: 6px 6px 0px #000 !important;
+    
+    /* 3. 稍微倾斜产生动感 */
+    transform: skewX(-1deg);
+    
+    /* 4. 如果你想要截图里那个紫色背景，取消下面这行的注释 */
+    /* background: #9b51e0 !important; */
+    
+    /* 5. 确保圆角消失，P5是硬朗风格 */
+    border-radius: 0 !important;
+    
+    /* 6. 调整间距，防止倾斜后重叠 */
+    margin-bottom: 30px !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* 所有背景（包括首页卡片、文章页、页面页等） */
-#aside_content .card-widget, #recent-posts>.recent-post-item, .layout_page>div:first-child:not(.recent-posts), .layout_post>#page, .layout_post>#post, .read-mode .layout_post>#post{
-  /* 以下代表白色透明度为0.3 */
-  background: rgba(231, 192, 154, 0.3);
+/* 鼠标悬停时的效果：按下感 */
+#recent-posts > .recent-post-item:hover {
+    /* 阴影变小，卡片位移 */
+    box-shadow: 2px 2px 0px #000 !important;
+    transform: skewX(-1deg) translate(4px, 4px); 
 }
 
-/*
+/* 如果你想要文字不跟着倾斜（选做） */
+#recent-posts > .recent-post-item > * {
+    transform: skewX(1deg); /* 反向倾斜回来 */
+}
+
+/* 修改网站全局背景 - P5 风格深紫色调 */
 #web_bg {
-    background: -webkit-linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); 
-    background: -o-linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); 
-    background: -moz-linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); 
-    background: linear-gradient(to right, rgb(238, 218, 177), rgb(37, 194, 233)); 
-  }
-*/
+    /* 1. 清除原有的木纹图片 */
+    background-image: none !important;
+    
+    /* 2. 核心调整：更接近截图的深紫色径向渐变 */
+    /* #7028e4: 中心的亮紫色（取自你截图文字背后的紫色）
+       #15002a: 边缘的深紫黑色（取自截图四周的暗部）
+       circle at 50% 20%: 把光源中心稍微往上提一点，配合你的Banner位置
+    */
+    background: radial-gradient(circle at 50% 20%, #7028e4 0%, #3a0ca3 40%, #15002a 100%) !important;
+    
+    /* 3. 页面滚动时背景固定不动，营造沉浸感 */
+    background-attachment: fixed !important;
+    background-size: cover !important;
+}
 
-/*lastshojo
-  #web_bg {
-    background: -webkit-linear-gradient(to right, rgb(228, 130, 2), rgb(204, 183, 138)); 
-    background: -o-linear-gradient(to right,  rgb(228, 130, 2), rgb(204, 183, 138)); 
-    background: -moz-linear-gradient(to right, rgb(228, 130, 2), rgb(204, 183, 138)); 
-    background: linear-gradient(to right,  rgb(228, 130, 2), rgb(204, 183, 138));
-  }
-  */
+/* --- 修改首页文章卡片背景色 --- */
 
-  /*violet*/
-  #web_bg {
-    background: -webkit-linear-gradient(to right, rgb(194, 79, 247), rgb(215, 186, 221)); 
-    background: -o-linear-gradient(to right, rgb(173, 41, 235), rgb(230, 182, 240)); 
-    background: -moz-linear-gradient(to right, rgb(173, 41, 235), rgb(153, 135, 156)); 
-    background: linear-gradient(to right, rgb(173, 41, 235), rgb(67, 13, 78));
-  }
+/* 1. 定位到首页的文章卡片容器 */
+#recent-posts > .recent-post-item {
+    /* 将背景颜色修改为 P5 风格的紫色 */
+    /* 你可以根据喜好调整这个十六进制颜色代码 */
+    background-color: #7e57c2 !important; 
+    
+    /* 2. 重要：背景变深后，必须将主要文字颜色改为白色 */
+    color: #ffffff !important;
+}
 
-  
+/* 3. 针对性修改卡片下方的小字（日期、评论等元数据）颜色 */
+#recent-posts > .recent-post-item .article-meta-wrap {
+    color: #e0e0e0 !important; /* 使用稍微灰一点的白色，增加层次感 */
+}
+
+/* 4. 修改元数据中链接（如分类、标签）的颜色 */
+#recent-posts > .recent-post-item .article-meta-wrap a {
+    color: #ffffff !important; /* 链接显示纯白 */
+}
+
+/* 5. 鼠标悬停在链接上时的效果 */
+#recent-posts > .recent-post-item .article-meta-wrap a:hover {
+    color: #000 !important; /* 悬停时变黑，符合 P5 的反色风格 */
+    background-color: #fff; /* 增加一个白色背景强调 */
+    text-decoration: none;
+    padding: 0 4px;
+    transition: all 0.2s;
+}
+/* ==================================
+   P5 风格文章内图片相框效果
+================================== */
+
+/* 1. 定位文章容器内的所有图片 */
+#article-container img {
+    /* --- 核心 P5 样式 --- */
+    
+    /* 粗黑边框 */
+    border: 4px solid #000 !important;
+    
+    /* P5标志性的硬黑阴影 (不模糊) */
+    box-shadow: 8px 8px 0px #000 !important;
+    
+    /* 确保是尖角，没有圆角 */
+    border-radius: 0 !important;
+
+    /* --- “对话框/相框”感增强 --- */
+    
+    /* 给图片加一个白色的内衬垫，看起来更像一个拍立得相框或独立的对话窗口 */
+    padding: 10px !important;
+    background-color: #fff !important; 
+
+    /* --- 布局与间距调整 --- */
+    
+    /* 强制图片独占一行并居中，这样看起来更有气势 */
+    display: block !important;
+    margin: 30px auto !important; /* 上下留出空间，左右居中 */
+    
+    /* 防止阴影撑破手机屏幕宽度 */
+    /* max-width: calc(100% - 16px) !important; 還要減去padding，太麻煩，用下面的box-sizing更好 */
+    box-sizing: border-box !important; 
+    max-width: 100% !important;
+    height: auto !important;
+
+    /* 添加一个过渡动画，为 hover 做准备 */
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 2. 鼠标悬停时的交互效果 (可选) */
+/* 当鼠标放上去时，阴影变小，图片下沉，产生“按下”的互动感 */
+#article-container img:hover {
+    box-shadow: 3px 3px 0px #000 !important;
+    transform: translate(5px, 5px); /* 向右下方移动，配合阴影变化 */
+}
+
+/* ==================================
+   P5 风格：文章内小标题 (h1-h4)
+================================== */
+
+/* 1. 选中文章内容区域的所有标题 */
+#article-container h1,
+#article-container h2,
+#article-container h3,
+#article-container h4 {
+    /* --- 核心配色：黑底白字 (最经典的 P5 标题风格) --- */
+    /* 如果你喜欢紫色底，把下面换成 #7e57c2 即可 */
+    background-color: #000 !important; 
+    color: #fff !important;
+    
+    /* --- 边框与阴影 --- */
+    border: 2px solid #000 !important;
+    /* 给一个紫色的硬阴影，和黑底形成撞色，非常潮 */
+    box-shadow: 4px 4px 0px #7e57c2 !important;
+    
+    /* --- 形状调整 --- */
+    border-radius: 0 !important; /* 尖角 */
+    padding: 5px 15px !important; /* 把文字包起来 */
+    
+    /* 清除主题默认的下划线样式 */
+    border-bottom: 2px solid #000 !important; 
+    
+    /* --- P5 灵魂：歪斜 --- */
+    transform: skewX(-1.5deg);
+    
+    /* 让标题像一个标签一样，宽度自适应文字 (可选) */
+    /* 如果想要整行都是黑条，就删掉下面这行 display: inline-block */
+    display: inline-block !important; 
+    
+    /* 间距调整 */
+    margin-top: 40px !important;
+    margin-bottom: 20px !important;
+    
+    /* 加上过渡动画 */
+    transition: all 0.2s;
+}
+
+/* 2. 鼠标悬停在标题上时的微交互 */
+#article-container h1:hover,
+#article-container h2:hover,
+#article-container h3:hover,
+#article-container h4:hover {
+    /* 按下效果 */
+    transform: skewX(-1.5deg) translate(3px, 3px);
+    box-shadow: 1px 1px 0px #7e57c2 !important;
+}
+
+/* 3. 处理 Butterfly 主题自带的标题图标 (那个 # 号) */
+#article-container h1::before,
+#article-container h2::before,
+#article-container h3::before,
+#article-container h4::before {
+    color: #7e57c2 !important; /* 把图标改成紫色 */
+    margin-right: 10px !important;
+    
+    /* 如果你不想要那个 # 号图标，解开下面这行的注释 */
+    /* display: none !important; */
+}
+
