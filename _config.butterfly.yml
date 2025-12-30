@@ -701,7 +701,7 @@ canvas_nest:
 
 # Mouse click effects: fireworks (鼠標點擊效果: 煙火特效)
 fireworks:
-  enable: false
+  enable: true
   zIndex: 9999 # -1 or 9999
   mobile: false
 
@@ -712,7 +712,7 @@ click_heart:
 
 # Mouse click effects: words (鼠標點擊效果: 文字)
 ClickShowText:
-  enable: true
+  enable: false 
   text:
    - 你也在
    - 寻找
@@ -758,9 +758,9 @@ hr_icon:
 
 # the subtitle on homepage (主頁subtitle)
 subtitle:
-  enable: true
+  enable: false
   # Typewriter Effect (开启打字效果)
-  effect: true
+  effect: false
   # loop (循環打字)
   loop: false
   # source調用第三方服務
@@ -776,7 +776,7 @@ subtitle:
   # 开头不允許转义字元，如需要，请把整個句子用双引号包住
   # 如果关闭打字效果，subtitle只会现示sub的第一行文字
   sub:
-    - 欢迎你，Player！
+    - Brand New Life
 
 # Loading Animation (加載動畫)
 preloader:
@@ -933,6 +933,7 @@ inject:
   head: 
    - <link rel="stylesheet" href="/css/beauty.css">
    - <link rel="stylesheet" href="/css/background.css">
+   - <link rel="stylesheet" href="/css/nav_images.css">
     # - <link rel="stylesheet" href="/xxx.css">,此处记住要换行
   bottom:
   - <script src="/js/calendar.js"></script>

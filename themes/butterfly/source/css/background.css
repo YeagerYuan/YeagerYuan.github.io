@@ -106,7 +106,7 @@
     
     /* 强制图片独占一行并居中，这样看起来更有气势 */
     display: block !important;
-    margin: 30px auto !important; /* 上下留出空间，左右居中 */
+    margin: 10px auto !important; /* 上下留出空间，左右居中 */
     
     /* 防止阴影撑破手机屏幕宽度 */
     /* max-width: calc(100% - 16px) !important; 還要減去padding，太麻煩，用下面的box-sizing更好 */
@@ -187,4 +187,6 @@
     /* 如果你不想要那个 # 号图标，解开下面这行的注释 */
     /* display: none !important; */
 }
+
+
 
