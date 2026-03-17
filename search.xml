@@ -23,13 +23,19 @@
     
     
     <entry>
-      <title></title>
+      <title>URP渲染管线</title>
       <link href="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/"/>
       <url>/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>[itle: URP渲染管线<br>date: 2026-03-10 21:45:28<br>tags: Unity</p><h1 id="如何用URP渲染管线提高你的游戏观感"><a href="#如何用URP渲染管线提高你的游戏观感" class="headerlink" title="如何用URP渲染管线提高你的游戏观感"></a>如何用URP渲染管线提高你的游戏观感</h1><h2 id="讨论的对象"><a href="#讨论的对象" class="headerlink" title="讨论的对象"></a>讨论的对象</h2><p>可编程渲染管线（SRP）：Unity提供的一套核心架构，把原本写死的底层渲染代码暴露给开发者，从而通过修改代码来控制渲染流程。</p><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773151546491.png" alt="1773151546491" style="zoom:33%;"><p>通用渲染管线（URP）：这是SRP的一个预制实现，其目标为高性能和跨平台。</p><p>渲染管线资产：这是URP的控制中心，所有渲染设置都保存在这个Asset中，可创建多个asset，根据不同设备的性能需求来切换。</p><p>可渲染管线特性与自定义渲染通路：当自己需要定制一些视觉特效的时候，就要编写Renderer Feature。</p><p>摄像机堆栈：这是处理3D世界和UI的关键技术，可以用一个摄像机渲染UI层，另外一个摄像机渲染3D内容，最后融合在一起输出。</p><h2 id="案例介绍"><a href="#案例介绍" class="headerlink" title="案例介绍"></a>案例介绍</h2><p>我们将用Unity经典的BoatAttack项目（以下简称BA）作为案例，来介绍URP管线的一些应用。该项目展示了一款用Unity制作的赛艇游戏，使用 Unity 2019.3 来构建，虽然从2026年的角度来看已经是很老的Unity版本了，但无论版本迭代到何处，关于URP管线的最核心内容是不变的，并且其达到的视觉效果哪怕是在今天也不算过时。</p><p><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773299658422.png" alt="1773299658422"></p><h2 id="切换不同的质量"><a href="#切换不同的质量" class="headerlink" title="切换不同的质量"></a>切换不同的质量</h2><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773299630413.png" alt="1773299630413" style="zoom:67%;"><p>我们可以通过切换不同的PipelineAsset，来查看项目中为不同配置的机器所做的渲染，下面依次为low，medium和high的效果展示，主要就是贴图质量的差距。</p><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773300223941.png" alt="1773300223941" style="zoom:50%;"><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773299999183.png" alt="1773299999183" style="zoom: 50%;"><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773299973632.png" alt="1773299973632" style="zoom:50%;"><p>打字练习，今天来了一位非常喜欢游戏制作的朋友，可以看到这位朋友不但对游戏有着相当深刻的理解，更为重要的是，这位朋友平日里喜欢自己捣鼓一些东西，比如说，如果今天有一个非常喜欢吃饭的人来到了你家，那么作为主人，你最应该做的就是做一顿非常好吃的饭来款待这位客人。</p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="如何用URP渲染管线提高你的游戏观感"><a href="#如何用URP渲染管线提高你的游戏观感" class="headerlink" title="如何用URP渲染管线提高你的游戏观感"></a>如何用URP渲染管线提高你的游戏观感</h1><h2 id="讨论的对象"><a href="#讨论的对象" class="headerlink" title="讨论的对象"></a>讨论的对象</h2><p>可编程渲染管线（SRP）：Unity提供的一套核心架构，把原本写死的底层渲染代码暴露给开发者，从而通过修改代码来控制渲染流程。</p><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773151546491.png" alt="1773151546491" style="zoom:33%;"><p>通用渲染管线（URP）：这是SRP的一个预制实现，其目标为高性能和跨平台。</p><p>渲染管线资产：这是URP的控制中心，所有渲染设置都保存在这个Asset中，可创建多个asset，根据不同设备的性能需求来切换。</p><p>可渲染管线特性与自定义渲染通路：当自己需要定制一些视觉特效的时候，就要编写Renderer Feature。</p><p>摄像机堆栈：这是处理3D世界和UI的关键技术，可以用一个摄像机渲染UI层，另外一个摄像机渲染3D内容，最后融合在一起输出。</p><h2 id="案例介绍"><a href="#案例介绍" class="headerlink" title="案例介绍"></a>案例介绍</h2><p>我们将用Unity经典的BoatAttack项目（以下简称BA）作为案例，来介绍URP管线的一些应用。该项目展示了一款用Unity制作的赛艇游戏，使用 Unity 2019.3 来构建，虽然从2026年的角度来看已经是很老的Unity版本了，但无论版本迭代到何处，关于URP管线的最核心内容是不变的，并且其达到的视觉效果哪怕是在今天也不算过时。</p><p><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773299658422.png" alt="1773299658422"></p><h2 id="切换不同的质量"><a href="#切换不同的质量" class="headerlink" title="切换不同的质量"></a>切换不同的质量</h2><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773299630413.png" alt="1773299630413" style="zoom:67%;"><p>我们可以通过切换不同的PipelineAsset，来查看项目中为不同配置的机器所做的渲染，下面依次为low，medium和high的效果展示，主要就是贴图质量的差距。</p><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773300223941.png" alt="1773300223941" style="zoom:50%;"><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773299999183.png" alt="1773299999183" style="zoom: 50%;"><img src="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/1773299973632.png" alt="1773299973632" style="zoom:50%;"><p>打字练习，今天来了一位非常喜欢游戏制作的朋友，可以看到这位朋友不但对游戏有着相当深刻的理解，更为重要的是，这位朋友平日里喜欢自己捣鼓一些东西，比如说，如果今天有一个非常喜欢吃饭的人来到了你家，那么作为主人，你最应该做的就是做一顿非常好吃的饭来款待这位客人。</p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> unity </tag>
+            
+        </tags>
       
     </entry>
     
@@ -93,7 +99,7 @@
     
     
     <entry>
-      <title>unity 曼波vs哈基米1</title>
+      <title>曼波vs哈基米1</title>
       <link href="/2026/01/14/unity-%E6%9B%BC%E6%B3%A2vs%E5%93%88%E5%9F%BA%E7%B1%B31/"/>
       <url>/2026/01/14/unity-%E6%9B%BC%E6%B3%A2vs%E5%93%88%E5%9F%BA%E7%B1%B31/</url>
       

@@ -94,38 +94,56 @@
 }
 
 /* ==================================
-   侧边栏标签 (Tags) P5 风格悬停特效
+   P5 风格侧边栏：全套文字悬停特效
+   (包含：标签、最新文章、分类、归档)
 ================================== */
 
-/* 1. 基础样式调整：给标签一点空间，方便它“变身” */
-.card-tag-cloud a {
-    display: inline-block !important; /* 必须是块级或行内块才能变形 */
-    padding: 3px 8px !important;      /* 增加内边距，让它看起来像个标签 */
-    margin: 3px !important;           /* 增加外边距，防止变大后撞车 */
-    border-radius: 0 !important;      /* P5 禁止圆角 */
-    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important; /* 弹性过渡 */
+/* 1. 选中侧边栏里所有需要变身的“文字链接” */
+.card-tag-cloud a,              /* 标签 */
+.card-archive-list-item a,      /* 归档 */
+.card-category-list-item a,     /* 分类 */
+.aside-list-item .title         /* 最新文章的标题 */
+{
+    display: inline-block !important; /* 必须变成块，才能变形 */
+    padding: 3px 8px !important;      /* 增加内边距，形成“贴纸感” */
+    margin: 2px !important;           /* 留出变形的空间 */
+    border-radius: 0 !important;      /* 拒绝圆角 */
+    
+    /* 弹性过渡动画 */
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 }
 
-/* 2. 鼠标悬停 (Hover) -> 变身黑色歪斜贴纸 */
-.card-tag-cloud a:hover {
-    /* --- 核心配色：黑底白字 (经典 P5) --- */
+/* 2. 鼠标悬停 -> 变身红底白字 + 歪斜 */
+.card-tag-cloud a:hover,
+.card-archive-list-item a:hover,
+.card-category-list-item a:hover,
+.aside-list-item .title:hover 
+{
+    /* --- 核心配色：红底白字 (P5 Joker风格) --- */
     background-color: #e30f0f !important;
-    color: #fff !important;
+    color: #ffffff !important;
     
-    /* --- 视觉冲击：紫色硬阴影 (呼应你的主色调) --- */
-    /* 如果想要红色阴影（Joker风格），把 #7e57c2 改成 #d50000 */
+    /* --- 视觉冲击：紫色硬阴影 --- */
     box-shadow: 4px 4px 0px #7e57c2 !important;
     
-    /* --- 动感形态：强烈歪斜 + 放大 --- */
+    /* --- 动感形态：歪斜 + 放大 --- */
     transform: skewX(-10deg) scale(1.15) !important;
     
-    /* --- 细节修正 --- */
-    text-decoration: none !important; /* 去掉下划线 */
+    /* 去掉下划线 */
+    text-decoration: none !important;
 }
 
-/* 3. 字体大小微调 (可选) */
-/* 如果觉得标签字太小，不够有冲击力，可以解开下面这行 */
-/* .card-tag-cloud a { font-size: 1.1em !important; } */
+/* 3. 特殊修正：防止最新文章列表的阴影被切掉 */
+.aside-list-item {
+    overflow: visible !important; /* 让变形后的阴影能显示出来 */
+}
+
+/* 4. 特殊修正：让分类和归档的数字也跟着变色（可选） */
+/* 如果你想让旁边的数字在悬停时也变白，就加上这句 */
+.card-archive-list-item a:hover .card-archive-list-count,
+.card-category-list-item a:hover .card-category-list-count {
+    color: #ffffff !important;
+}
 
 /* 文章标题 - 模仿 Ransom Note (剪报) 效果 */
 /* 针对首页文章卡片标题 (h1.post-title) 和 文章内页大标题 (.article-title) */
@@ -319,7 +337,7 @@ h1.post-title:hover,
     position: absolute !important;
     
     /* 默认居中放在标题后面 */
-    top: 13% !important;
+    top: 34% !important;
     left: 50% !important;
     /* 通过位移微调位置，如果不准，改这里 */
     /* translate(-50%, -50%) 是绝对居中 */
@@ -383,3 +401,110 @@ h1.post-title:hover,
     padding: 0 5px; 
     text-decoration: none !important;
 }
+
+/* ==================================
+
+   电脑端双列布局适配 (P5 风格紧凑版)
+
+================================== */
+
+
+
+/* 仅在屏幕宽度大于 1000px (电脑端) 时生效 */
+
+@media screen and (min-width: 1000px) {
+
+   
+
+    /* 1. 【适应屏幕宽度】让整个博客容器变宽 */
+
+    .layout {
+
+        max-width: 95% !important; /* 占据屏幕 95% 的宽度 */
+
+    }
+
+
+
+    /* 2. 【双列展示】Grid 网格布局核心设置 */
+
+    #recent-posts {
+
+        display: grid !important;
+
+        grid-template-columns: repeat(2, 1fr) !important; /* 强制分两列 */
+
+       
+
+        /* --- 核心修改：间距控制 --- */
+
+        /* 第一个数值 30px 是【上下间距】(太小会挡住阴影，30px 是极限) */
+
+        /* 第二个数值 20px 是【左右间距】 */
+
+        gap: 30px 20px !important;
+
+
+
+        align-items: start !important; /* 顶部对齐 */
+
+       
+
+        /* 增加容器内边距，防止最边缘的阴影被切掉 */
+
+        padding: 10px !important;
+
+    }
+
+
+
+    /* 3. 【卡片适配】修正单个文章卡片的尺寸 */
+
+    #recent-posts > .recent-post-item {
+
+        width: 100% !important; /* 填满格子 */
+
+       
+
+        /* 强制归零外边距，完全由 Grid gap 控制距离 */
+
+        margin: 0 !important;
+
+       
+
+        /* 内边距：建议 10px，太小(5px)会导致文字贴边 */
+
+        padding: 10px !important;
+
+    }
+
+
+
+    /* 4. 【图文比例】左图 30%，右文 68% */
+
+    #recent-posts > .recent-post-item .post_cover {
+
+        width: 30% !important;
+
+        /* 防止图片被拉伸变形 */
+
+        height: auto !important;
+
+        min-height: 150px !important;
+
+    }
+
+   
+
+    #recent-posts > .recent-post-item .recent-post-info {
+
+        width: 68% !important; /* 30% + 68% + 间隙 ≈ 100% */
+
+        padding-left: 15px !important; /* 文字和图片的距离 */
+
+    }
+
+}
+
+
+
