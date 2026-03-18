@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>使用FishNet 构建Unity 第一人称射击游戏的联机功能 | YEAGER在海的那边的小木屋</title><meta name="author" content="YeagerYuan"><meta name="copyright" content="YeagerYuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Fish-Net (Fish Networking) 是目前 Unity 社区中性能最优、功能最强大的开源免费联机框架。它的核心设计理念非常明确：用极低的 CPU 和带宽开销，提供商业引擎级别的高级网络同步特性。  要了解FishNet的网络原理，我们首先要理解一下P2P和服务器权威。 P2P（Peer-to-Peer，点对点）网络架构，是指没有中心化的服务器，每一个连接在网络上的节点（Peer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用FishNet 构建Unity 第一人称射击游戏的联机功能">
+<meta property="og:url" content="http://yeageryuan.cc/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/index.html">
+<meta property="og:site_name" content="YEAGER在海的那边的小木屋">
+<meta property="og:description" content="Fish-Net (Fish Networking) 是目前 Unity 社区中性能最优、功能最强大的开源免费联机框架。它的核心设计理念非常明确：用极低的 CPU 和带宽开销，提供商业引擎级别的高级网络同步特性。  要了解FishNet的网络原理，我们首先要理解一下P2P和服务器权威。 P2P（Peer-to-Peer，点对点）网络架构，是指没有中心化的服务器，每一个连接在网络上的节点（Peer">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yeageryuan.cc/img/avatar.jpg">
+<meta property="article:published_time" content="2026-03-17T13:36:23.000Z">
+<meta property="article:modified_time" content="2026-03-18T12:36:53.397Z">
+<meta property="article:author" content="YeagerYuan">
+<meta property="article:tag" content="unity">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yeageryuan.cc/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yeageryuan.cc/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '使用FishNet 构建Unity 第一人称射击游戏的联机功能',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-03-18 20:36:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/beauty.css"><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/nav_images.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">87</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">53</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa fa-commenting"></i><span> 研记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 灵感</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 好图</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 柔耳</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 醒目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 安利</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 悄悄话</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/img/p5_purple_bg.png')"><nav id="nav"><span id="blog-info"><a href="/" title="YEAGER在海的那边的小木屋"><span class="site-name">YEAGER在海的那边的小木屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-graduation-cap"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fa fa-commenting"></i><span> 研记</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 灵感</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photos/"><i class="fa-fw fa fa-camera-retro"></i><span> 好图</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fa fa-music"></i><span> 柔耳</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 醒目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fa fa-link"></i><span> 安利</span></a></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 悄悄话</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">使用FishNet 构建Unity 第一人称射击游戏的联机功能</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-17T13:36:23.000Z" title="发表于 2026-03-17 21:36:23">2026-03-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-18T12:36:53.397Z" title="更新于 2026-03-18 20:36:53">2026-03-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="使用FishNet 构建Unity 第一人称射击游戏的联机功能"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p> <strong>Fish-Net (Fish Networking)</strong> 是目前 Unity 社区中性能最优、功能最强大的开源免费联机框架。它的核心设计理念非常明确：<strong>用极低的 CPU 和带宽开销，提供商业引擎级别的高级网络同步特性。</strong> </p>
+<p>要了解FishNet的网络原理，我们首先要理解一下P2P和服务器权威。</p>
+<p>P2P（Peer-to-Peer，点对点）网络架构，是指没有中心化的服务器，每一个连接在网络上的节点（Peer）既是客户端，也是服务器。它们相互之间直接进行数据交换。</p>
+<p>在游戏联机的世界里，<strong>“权威（Authority）”</strong>的意思非常直白：<strong>谁拥有最终裁决权，谁说了算。</strong></p>
+<p>当两个玩家的网络状态发生冲突时（比如玩家 A 说“我躲进了掩体”，但玩家 B 说“我在他进掩体前爆了他的头”），系统必须听从“权威”的判定。</p>
+<p>为了更直观地理解，我们可以把联机网络想象成一个法庭。</p>
+<hr>
+<h4 id="1-客户端权威-Client-Authoritative"><a href="#1-客户端权威-Client-Authoritative" class="headerlink" title="1. 客户端权威 (Client-Authoritative)"></a>1. 客户端权威 (Client-Authoritative)</h4><p>在客户端权威的模式下，<strong>玩家自己的电脑（客户端）就是最高法官</strong>。</p>
+<ul>
+<li><strong>运行逻辑</strong>：玩家 A 的电脑直接在本地计算出结果：“我向左移动了 5 米，并且开枪命中了玩家 B。” 然后，玩家 A 的电脑把这个<strong>结果</strong>直接广播给所有人，服务器和其他玩家只能无条件接受这个事实。</li>
+<li><strong>最大优点：零延迟、开发极简。</strong> 因为不需要等任何人确认，玩家按下键盘的瞬间角色就会移动，开火的瞬间就会看到反馈。你写代码的方式几乎和写单机游戏一模一样。</li>
+<li><strong>致命缺点：外挂的温床。</strong> 既然客户端说了算，那么玩家只要稍微懂点内存修改（比如用 Cheat Engine），就可以让自己的客户端告诉全网：“我的血量现在是 99999，我的子弹永远打不完，且枪枪爆头。” 这是极其灾难的。</li>
+</ul>
+<h4 id="2-服务器权威-Server-Authoritative"><a href="#2-服务器权威-Server-Authoritative" class="headerlink" title="2. 服务器权威 (Server-Authoritative)"></a>2. 服务器权威 (Server-Authoritative)</h4><p>在服务器权威的模式下，<strong>服务器是唯一的、绝对的最高法官</strong>。所有客户端都只是没有决定权的“汇报者”和“执行者”。</p>
+<ul>
+<li><p><strong>运行逻辑</strong>：玩家 A 的电脑不能自己做主，它只能向服务器发送<strong>输入指令（Input）</strong>：“报告服务器，我按下了 W 键，并按下了鼠标左键。”</p>
+<p>服务器收到请求后，在自己的“无头游戏世界”里进行严格校验：A 前面有没有墙？A 的弹匣里还有没有子弹？A 开火时准星上有没有 B？</p>
+<p>校验完毕后，服务器再把<strong>状态（State）</strong>广播给所有人：“A 向前移动了 2 米，B 扣除了 50 点血。”</p>
+</li>
+<li><p><strong>最大优点：绝对公平与防外挂。</strong> 因为客户端无法决定任何数值，外挂修改本地内存毫无意义（比如你本地改成了无限血，但服务器后台记录你只有 100 血，被打中依然会死）。这就是为什么像 CS2 或者你正在参考的 Valorant 这类强调战术竞技的游戏，必须死死咬住服务器权威不放。</p>
+</li>
+<li><p><strong>致命缺点：输入延迟（Input Lag）。</strong> 如果玩家按下 W 键，必须等数据传到服务器，服务器点头同意后再传回来，角色才开始移动。只要网络有一点波动（比如 50ms 延迟），玩家就会觉得操作像踩在泥里一样卡顿，体验极差。</p>
+</li>
+</ul>
+<hr>
+<h4 id="这和-Fish-Net-有什么关系？"><a href="#这和-Fish-Net-有什么关系？" class="headerlink" title="这和 Fish-Net 有什么关系？"></a>这和 Fish-Net 有什么关系？</h4><p>Fish-Net 骨子里就是一个<strong>强服务器权威</strong>的网络框架。当你用 Fish-Net 开发射击游戏时：</p>
+<ol>
+<li><p><strong>为什么我们之前要学“客户端预测 (CSP)”？</strong></p>
+<p>正是为了解决服务器权威带来的“延迟感”。CSP 允许客户端在汇报给服务器的同时，<strong>先偷偷在本地提前播放移动和开火动画</strong>（这就是预测）。如果稍后服务器的判定结果和客户端的预测一致，那就无事发生，玩家感觉不到任何延迟；如果不一致，服务器就会强行把客户端“拽”回正确的位置（Reconciliation）。</p>
+</li>
+<li><p><strong>为什么需要“延迟补偿 (Lag Compensation)”？</strong></p>
+<p>因为服务器权威下，服务器看到的世界比所有客户端都要“晚一点”。当你在本地瞄准移动的敌人开火时，服务器收到指令时敌人早就走开了。延迟补偿就是让服务器能够<strong>“时光倒流”</strong>，把敌人拉回到你开火那一瞬间的位置来进行精准的射线判定。</p>
+</li>
+</ol>
+<p>所以，做一把好用的枪，本质上就是在这两个权威之间走钢丝：<strong>用客户端预测来保证手感，用服务器权威结合延迟补偿来保证公平。</strong></p>
+<p>下面将进行具体的操作。</p>
+<p>首先在Asset Store中导入资源到项目中。</p>
+<img src="/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/1773754673059.png" alt="1773754673059" style="zoom: 25%;">
+
+<img src="/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/1773754692332.png" alt="1773754692332" style="zoom:33%;">
+
+<p>首先我们在场景中添加NetWorkManager组件，然后我们创建一个平面，再创建一个立方体，命名为Player，将其在场景中调整好位置，然后添加上Network Object脚本，最后做成预制体。</p>
+<img src="/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/1773832377477.png" alt="1773832377477" style="zoom:50%;">
+
+<img src="/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/1773832206517.png" alt="1773832206517" style="zoom: 67%;">
+
+<p>然后我们找到刚刚的manager，把我们的预制体拖拽上去。</p>
+<img src="/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/1773832475390.png" alt="1773832475390" style="zoom:50%;">
+
+<p>打包测试，我们的编辑器作为server+client（两个按钮都要按），打包的软件作为client，两者均运行起来，可以看到，打包的Player也加入到了作为server的编辑器中。</p>
+<img src="/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/1773832688313.png" alt="1773832688313" style="zoom:67%;">
+
+<p>下面我们添加移动脚本如下：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> FishNet.Object;<span class="comment">//引入命名空间</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SimpleMove3D</span> : <span class="title">NetworkBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">Header(<span class="string">&quot;移动设置&quot;</span>)</span>]</span><br><span class="line">    [<span class="meta">Tooltip(<span class="string">&quot;物体的移动速度&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> moveSpeed = <span class="number">5f</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!IsOwner) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//关键！防止操作其他客户端的物体，只移动自己的物体！</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1. 获取玩家输入</span></span><br><span class="line">        <span class="comment">// GetAxisRaw 返回的是 -1, 0, 1，没有平滑过渡，适合 FPS 的干脆手感</span></span><br><span class="line">        <span class="built_in">float</span> horizontal = Input.GetAxisRaw(<span class="string">&quot;Horizontal&quot;</span>); <span class="comment">// A 和 D 键 (左右)</span></span><br><span class="line">        <span class="built_in">float</span> vertical = Input.GetAxisRaw(<span class="string">&quot;Vertical&quot;</span>);     <span class="comment">// W 和 S 键 (前后)</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 将输入组合成一个 3D 向量</span></span><br><span class="line">        <span class="comment">// 注意：Y 轴是 0，因为我们只在水平面上移动</span></span><br><span class="line">        <span class="comment">// .normalized 是为了防止斜着走（同时按 W 和 D）时速度变快</span></span><br><span class="line">        Vector3 direction = <span class="keyword">new</span> Vector3(horizontal, <span class="number">0f</span>, vertical).normalized;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. 执行移动</span></span><br><span class="line">        <span class="comment">// Time.deltaTime 确保移动速度不受电脑帧率影响</span></span><br><span class="line">        <span class="comment">// Space.Self 表示相对于物体自身的朝向移动</span></span><br><span class="line">        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.Self);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后便能在两边操作物体移动并且观察到对方了。</p>
+<img src="/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/1773833360159.png" alt="1773833360159" style="zoom:67%;">
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yeageryuan.cc">YeagerYuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yeageryuan.cc/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/">http://yeageryuan.cc/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yeageryuan.cc" target="_blank">YEAGER在海的那边的小木屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/unity/">unity</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/03/16/%E6%AF%81%E8%AA%89%E5%8F%82%E5%8D%8A%EF%BC%8C%E7%BE%8E%E5%B7%A5%E6%97%A0%E6%95%8C%E2%80%94%E2%80%94%E3%80%8A%E7%BB%88%E6%9C%AB%E5%9C%B0%E3%80%8B%E6%B8%B8%E6%88%8F%E7%82%B9%E8%AF%84/" title="毁誉参半，美工无敌——《终末地》游戏点评"><img class="cover" src="/pictures/173ab78c351f68c187e1d7f57b64bfeb46380397.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">毁誉参半，美工无敌——《终末地》游戏点评</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" title="URP渲染管线"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-10</div><div class="title">URP渲染管线</div></div></a></div><div><a href="/2025/02/08/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B05/" title="Unity-Shader入门笔记5"><img class="cover" src="/pictures/mita01.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-08</div><div class="title">Unity-Shader入门笔记5</div></div></a></div><div><a href="/2025/02/05/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B04/" title="Unity-Shader入门笔记4"><img class="cover" src="/pictures/mita01.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-05</div><div class="title">Unity-Shader入门笔记4</div></div></a></div><div><a href="/2025/01/27/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B03/" title="Unity-Shader入门笔记3"><img class="cover" src="/pictures/mita01.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-27</div><div class="title">Unity-Shader入门笔记3</div></div></a></div><div><a href="/2025/01/25/%E7%94%A8AssetStudio%E8%8E%B7%E5%8F%96Steam%E4%B8%8AUnity%E6%B8%B8%E6%88%8F%E8%B5%84%E4%BA%A7/" title="用AssetStudio获取Steam上Unity游戏资产"><img class="cover" src="/pictures/mita01.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-25</div><div class="title">用AssetStudio获取Steam上Unity游戏资产</div></div></a></div><div><a href="/2025/01/24/Unity-Shader%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B02/" title="Unity-Shader入门笔记2"><img class="cover" src="/pictures/mita0.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-24</div><div class="title">Unity-Shader入门笔记2</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-calendar"><div class="card-content"><div class="item-headline"><i class="far fa-calendar-alt" aria-hidden="true"></i><span>考研倒计时</span></div><div class="widget-wrap"></div><div class="widget" id="calendar"></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎在评论区评论！记得挂好梯子，随便输个邮箱开匿名评论就行~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9D%83%E5%A8%81-Client-Authoritative"><span class="toc-number">1.</span> <span class="toc-text">1. 客户端权威 (Client-Authoritative)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9D%83%E5%A8%81-Server-Authoritative"><span class="toc-number">2.</span> <span class="toc-text">2. 服务器权威 (Server-Authoritative)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%99%E5%92%8C-Fish-Net-%E6%9C%89%E4%BB%80%E4%B9%88%E5%85%B3%E7%B3%BB%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">这和 Fish-Net 有什么关系？</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/" title="使用FishNet 构建Unity 第一人称射击游戏的联机功能">使用FishNet 构建Unity 第一人称射击游戏的联机功能</a><time datetime="2026-03-17T13:36:23.000Z" title="发表于 2026-03-17 21:36:23">2026-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/16/%E6%AF%81%E8%AA%89%E5%8F%82%E5%8D%8A%EF%BC%8C%E7%BE%8E%E5%B7%A5%E6%97%A0%E6%95%8C%E2%80%94%E2%80%94%E3%80%8A%E7%BB%88%E6%9C%AB%E5%9C%B0%E3%80%8B%E6%B8%B8%E6%88%8F%E7%82%B9%E8%AF%84/" title="毁誉参半，美工无敌——《终末地》游戏点评"><img src="/pictures/173ab78c351f68c187e1d7f57b64bfeb46380397.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="毁誉参半，美工无敌——《终末地》游戏点评"/></a><div class="content"><a class="title" href="/2026/03/16/%E6%AF%81%E8%AA%89%E5%8F%82%E5%8D%8A%EF%BC%8C%E7%BE%8E%E5%B7%A5%E6%97%A0%E6%95%8C%E2%80%94%E2%80%94%E3%80%8A%E7%BB%88%E6%9C%AB%E5%9C%B0%E3%80%8B%E6%B8%B8%E6%88%8F%E7%82%B9%E8%AF%84/" title="毁誉参半，美工无敌——《终末地》游戏点评">毁誉参半，美工无敌——《终末地》游戏点评</a><time datetime="2026-03-15T16:11:55.000Z" title="发表于 2026-03-16 00:11:55">2026-03-16</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/10/URP%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF/" title="URP渲染管线">URP渲染管线</a><time datetime="2026-03-10T13:45:28.000Z" title="发表于 2026-03-10 21:45:28">2026-03-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/27/%E7%94%A8UIManager%E5%85%A8%E5%B1%80%E7%AE%A1%E7%90%86%E4%BD%A0%E7%9A%84UI/" title="用UIManager全局管理你的UI">用UIManager全局管理你的UI</a><time datetime="2026-02-27T07:57:04.000Z" title="发表于 2026-02-27 15:57:04">2026-02-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/05/%E5%93%88%E6%A0%BC%E9%9D%A2%E5%9F%BA/" title="哈格面基">哈格面基</a><time datetime="2026-02-05T10:58:23.000Z" title="发表于 2026-02-05 18:58:23">2026-02-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2026 By YeagerYuan</div><div class="footer_custom_text">有空就来看看吧，我的朋友</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://yeageryuan.cc/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/'
+    this.page.identifier = '/2026/03/17/%E4%BD%BF%E7%94%A8FishNet-%E6%9E%84%E5%BB%BAUnity-%E7%AC%AC%E4%B8%80%E4%BA%BA%E7%A7%B0%E5%B0%84%E5%87%BB%E6%B8%B8%E6%88%8F%E7%9A%84%E8%81%94%E6%9C%BA%E5%8A%9F%E8%83%BD/'
+    this.page.title = '使用FishNet 构建Unity 第一人称射击游戏的联机功能'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://yeageryuan.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Disqus' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
