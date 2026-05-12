@@ -337,7 +337,7 @@ h1.post-title:hover,
     position: absolute !important;
     
     /* 默认居中放在标题后面 */
-    top: 13% !important;
+    top: 34% !important;
     left: 50% !important;
     /* 通过位移微调位置，如果不准，改这里 */
     /* translate(-50%, -50%) 是绝对居中 */
