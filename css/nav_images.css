@@ -1,0 +1,165 @@
+/* source/css/nav_images.css */
+/* ====================================================
+   P5 风格导航栏：修复下拉菜单 + 纯CSS动态特效版
+   ==================================================== */
+
+/* --- 0. 定义动画 --- */
+@keyframes p5-skew-shift {
+    0% { transform: skewX(-20deg) translateX(0); }
+    25% { transform: skewX(-25deg) translateX(-2px); }
+    50% { transform: skewX(-20deg) translateX(0); }
+    75% { transform: skewX(-15deg) translateX(2px); }
+    100% { transform: skewX(-20deg) translateX(0); }
+}
+
+@media screen and (min-width: 768px) {
+
+    /* ====================================================
+       1. 顶层按钮设置 (只针对导航栏第一排)
+       ==================================================== */
+    
+    /* ⚠️ 注意：加了 > 符号，只选中第一层，不误伤下拉菜单 */
+    #nav .menus_item > .site-page {
+        /* 文字隐形 */
+        color: transparent !important;
+        text-shadow: none !important;
+        font-size: 0 !important;
+        
+        /* 布局设置 */
+        display: inline-block !important;
+        vertical-align: middle !important;
+        background-color: transparent !important;
+        
+        /* 图片通用设置 */
+        background-repeat: no-repeat !important;
+        background-size: contain !important; 
+        background-position: center center !important;
+        
+        /* 统一尺寸 */
+        width: 120px !important;
+        height: 50px !important;
+        margin: 0 2px !important;
+        
+        /* 相对定位 */
+        position: relative !important;
+        z-index: 1 !important;
+        
+        transition: transform 0.2s ease-in-out !important;
+    }
+
+    /* 隐藏顶层按钮的图标和文字标签 */
+    #nav .menus_item > .site-page i,
+    #nav .menus_item > .site-page span {
+        display: none !important;
+    }
+    
+    /* 去除悬停背景 */
+    #nav .menus_item > .site-page:hover {
+        background-color: transparent !important;
+    }
+
+    /* ====================================================
+       2. 下拉菜单修复 (让标签显示，并去掉白底)
+       ==================================================== */
+
+    /* 2.1 下拉菜单容器：黑底白边红阴影 */
+    #nav .menus_item .menus_item_child {
+        background-color: #000 !important; /* 黑底 */
+        border: 2px solid #fff !important; /* 白边 */
+        box-shadow: 6px 6px 0px #d50000 !important; /* P5 红阴影 */
+        border-radius: 0 !important; /* 直角 */
+        margin-top: 10px !important;
+        padding: 5px 0 !important;
+    }
+
+    /* 2.2 下拉菜单里的每一项：文字复活 */
+    #nav .menus_item .menus_item_child .site-page {
+        color: #fff !important;        /* 文字变白 */
+        font-size: 14px !important;    /* 字号恢复 */
+        font-weight: bold !important;
+        background: transparent !important;
+        display: block !important;     /* 块状显示 */
+        text-shadow: none !important;
+        width: auto !important;        /* 宽度自动 */
+        height: auto !important;       /* 高度自动 */
+        margin: 0 !important;
+    }
+    
+    /* 2.3 下拉菜单里的图标复活 */
+    #nav .menus_item .menus_item_child .site-page i,
+    #nav .menus_item .menus_item_child .site-page span {
+        display: inline-block !important;
+    }
+
+    /* 2.4 下拉菜单悬停效果 */
+    #nav .menus_item .menus_item_child .site-page:hover {
+        background-color: #d50000 !important; /* 悬停变红 */
+        color: #000 !important; /* 文字变黑 */
+        transform: skewX(-10deg) translateX(5px) !important;
+    }
+
+    /* ====================================================
+       3. 图片映射 (加了 > 号精准匹配)
+       ==================================================== */
+
+    #nav .menus_item > .site-page[href="/"] { background-image: url('/img/nav/home.png') !important; }
+    
+    #nav .menus_item > .site-page:has(.fa-graduation-cap) { background-image: url('/img/nav/articles.png') !important; }
+    
+    #nav .menus_item > .site-page[href*="/shuoshuo/"] { background-image: url('/img/nav/note.png') !important; }
+    
+    #nav .menus_item > .site-page:has(.fa-list) { background-image: url('/img/nav/inspire.png') !important; }
+    
+    #nav .menus_item > .site-page[href*="/links/"] { background-image: url('/img/nav/link.png') !important; }
+    
+    #nav .menus_item > .site-page[href*="/comment/"] { background-image: url('/img/nav/chat.png') !important; }
+    
+    #nav .menus_item > .site-page[href*="/about/"] { background-image: url('/img/nav/about.png') !important; }
+
+    /* ====================================================
+       4. 核心特效：Hover 和 Selected 动态背景
+       ==================================================== */
+    
+    /* 放大效果 */
+    #nav .menus_item > .site-page:hover,
+    #nav .menus_item > .site-page.current {
+        transform: scale(1.1) !important;
+    }
+
+    /* --- 红色层 (主背景) --- */
+    #nav .menus_item > .site-page:hover::before,
+    #nav .menus_item > .site-page.current::before {
+        content: '' !important;
+        position: absolute !important;
+        z-index: -2 !important;
+        
+        top: 5px !important; bottom: 5px !important;
+        left: 5px !important; right: 5px !important;
+        
+        background-color: #e100ff17 !important; /* 修正为纯正 P5 红 */
+        
+        transform: skewX(-20deg) !important;
+        animation: p5-skew-shift 0.4s infinite linear !important;
+        clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+    }
+
+    /* --- 黑色层 (重影效果) --- */
+    #nav .menus_item > .site-page:hover::after,
+    #nav .menus_item > .site-page.current::after {
+        content: '' !important;
+        position: absolute !important;
+        z-index: -1 !important;
+        
+        top: 8px !important; bottom: 2px !important;
+        left: 8px !important; right: 2px !important;
+        
+        background-color: #000 !important;
+        opacity: 0.8 !important;
+        
+        transform: skewX(-20deg) !important;
+        animation: p5-skew-shift 0.6s infinite reverse !important;
+    }
+    
+    /* 5. 搜索按钮微调 */
+    #search-button .site-page { width: 50px !important; }
+}
